@@ -1,4 +1,4 @@
-// Table section in about.html
+
 const data = [
     { ward: 1, habitation: "KUNNUKADU", streets: ["NEW MAJITH STREET", "MUTHUMARIYAMMAN KOVIL STREET", "CARMEL NAGAR"] },
     { ward: 2, habitation: "KOVALAM KUPPAM", streets: ["BAJANAI KOVIL STREET"] },
