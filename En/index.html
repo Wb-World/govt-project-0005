@@ -77,87 +77,27 @@
         <!-- Include Alpine.js -->
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js" defer></script>
 
-        <header class="bg-gradient-to-r from-amber-600 to-amber-500 text-white p-4 flex items-center justify-between" data-aos="fade-down">
-            <!-- Logo & Title -->
-            <div class="flex items-center space-x-3">
-                <img src="../assets/icons/TamilNadu_Logo.svg" alt="Logo" class="h-12 md:h-16" />
-                <div class="leading-tight">
-                    <h1 class=" text-lg md:text-2xl ">KOVALAM PANCHAYAT</h1>
-                    <span class="text-sm md:text-lg">Corruption Free Administration</span>
-                </div>
-                <div style="padding-left: 110cap;">
-                  <a href="../Ta/index.html" style="font-size: larger;"><u>தமிழ்</u></a>
-                </div>
-
-                <!-- 
-                <div class="fixed bottom-5 right-5 text-white hidden lg:flex space-x-3">
-                    <button id="enBtn" onclick="setLanguage('En')" class="hover:underline"><h6>English</h6></button>
-                    <button id="taBtn" onclick="setLanguage('Ta')" class="hover:underline"><h6>தமிழ்</h6></button>
-                </div>
-                -->
-                
-                
-            </div>
-
-
-            <script>
-                // Get current language from cookie
-                const match = document.cookie.match(/(^| )language=([^;]+)/);
-                const currentLang = match ? match[2] : 'En';
-                
-                // Hide buttons for both desktop and mobile
-                function hideCurrentLanguageButtons() {
-                    const enBtn = document.getElementById('enBtn');
-                    const taBtn = document.getElementById('taBtn');
-                    const mobileEnBtn = document.getElementById('mobileEnBtn');
-                    const mobileTaBtn = document.getElementById('mobileTaBtn');
-                    
-                    if (currentLang === 'En') {
-                        if (enBtn) enBtn.style.display = 'none';
-                        if (mobileEnBtn) mobileEnBtn.style.display = 'none';
-                    } else {
-                        if (taBtn) taBtn.style.display = 'none';
-                        if (mobileTaBtn) mobileTaBtn.style.display = 'none';
-                    }
-                }
-                document.addEventListener('DOMContentLoaded', hideCurrentLanguageButtons);
-
-                function setLanguage(lang) {
-                    document.cookie = `language=${lang}; path=/; max-age=31536000`;
-                    window.location.href = `/${lang}/index.html`; // Redirect to selected language page
-                }
-            
-                function getLanguage() {
-                    const match = document.cookie.match(/(^| )language=([^;]+)/);
-                    return match ? match[2] : null;
-                }
-            
-                function detectAndRedirect() {
-                    let lang = getLanguage();
-            
-                    if (!lang) {
-                        lang = navigator.language.startsWith("Ta") ? "Ta" : "En"; // Detect browser language
-                        document.cookie = `language=${lang}; path=/; max-age=31536000`; // Save in cookies
-                    }
-            
-                    // Only redirect if not already on the correct page
-                    const currentPath = window.location.pathname;
-                    if (!currentPath.startsWith(`/${lang}/`)) {
-                        window.location.href = `/${lang}/index.html`;
-                    }
-                }
-            
-                // Run the redirection check only on the main index.html
-                if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
-                    detectAndRedirect();
-                }
-            </script>
-            
-            <!-- Menu Button (Mobile Only) -->
-            <button id="menuButton" class="lg:hidden text-white text-2xl focus:outline-none">
-                ☰
-            </button>
-        </header>
+        <header class="bg-gradient-to-r from-amber-600 to-amber-500 text-white p-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0" data-aos="fade-down">
+          <!-- Logo & Title -->
+          <div class="flex items-center space-x-3">
+              <img src="../assets/icons/TamilNadu_Logo.svg" alt="Logo" class="h-12 md:h-16" />
+              <div class="leading-tight">
+                  <h1 class="text-lg md:text-2xl">KOVALAM PANCHAYAT</h1>
+                  <span class="text-sm md:text-lg">Corruption Free Administration</span>
+              </div>
+          </div>
+      
+          <!-- Tamil Language Link (moved outside logo area for spacing control) -->
+          <div class="mt-2 md:mt-0 md:ml-auto">
+              <a href="../Ta/index.html" class="text-white underline text-lg md:text-xl hover:text-amber-200">தமிழ்</a>
+          </div>
+      
+          <!-- Menu Button (Mobile Only) -->
+          <button id="menuButton" class="lg:hidden text-white text-2xl focus:outline-none">
+              ☰
+          </button>
+      </header>
+      
 
         <!-- Mobile Navigation Menu -->
         <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
