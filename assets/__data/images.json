@@ -20,9 +20,9 @@
       "3": ["/assets/images/UGW/1.JPEG", "/assets/images/UGW/2.jpg", "/assets/images/UGW/3.jpeg", "/assets/images/UGW/4.jpg"]
     },
     "disaster": {
-      "1": ["/assets/images/northEastMonsoon/20241015_133936.jpg", "/assets/images/northEastMonsoon/20241015_183944.jpg", "/assets/images/northEastMonsoon/IMG_4435.JPG", "/assets/images/northEastMonsoon/IMG_4558.JPG","/assets/images/northEastMonsoon/IMG_4682.JPG"],
-      "2": ["/assets/images/northEastMonsoon/kit.HEIC.jpg","/assets/images/northEastMonsoon/IMG_5901.JPG","/assets/images/northEastMonsoon/IMG_5758.HEIC.jpg"],
-      "3": ["/assets/images/fireStation/IMG_1381.JPG", "/assets/images/fireStation/IMG_1389.JPG", "/assets/images/fireStation/IMG_1585.JPG", "/assets/images/fireStation/IMG_1605.JPG","/assets/images/fireStation/IMG_1758.jpg"]
+      "1": ["/assets/images/northEastMonsoon/20241015_133936.jpg", "/assets/images/northEastMonsoon/20241015_183944.jpg", "/assets/images/northEastMonsoon/IMG_4435.JPG","/assets/images/northEastMonsoon/IMG_4682.JPG"],
+      "2": ["/assets/images/northEastMonsoon/kit.HEIC.jpg","/assets/images/northEastMonsoon/IMG_5901.JPG","/assets/images/northEastMonsoon/IMG_5758.HEIC.jpg","/assets/images/northEastMonsoon/IMG_4491.JPG"],
+      "3": ["/assets/images/fireStation/IMG_1381.JPG", "/assets/images/fireStation/IMG_1389.JPG", "/assets/images/fireStation/IMG_1585.JPG", "/assets/images/fireStation/IMG_1605.JPG"]
      },
     "other": {
       "1": ["/assets/images/panchayat.jpg", "/assets/images/panchayat.jpg", "/assets/images/panchayat.jpg", "/assets/images/panchayat.jpg"],
