@@ -32,7 +32,7 @@
             "Family Members Aadhaar Card",
             "Smart Card"
         ],
-        "images": [ "/assets/images/taxs/cert2.jpg"],
+        "images": [ "/assets/images/taxs/cert6.png"],
         "time": "7 days"
     },
     {
@@ -157,7 +157,7 @@
             "Proof Of Marriage",
             "Proof Of Desertion FIR Details"
         ],
-        "images": ["/assets/images/e-sevai/e9.jpg"],
+        "images": ["/assets/images/e-sevai/cert7.png"],
         "time": "30 days"
     },
     {
@@ -187,7 +187,7 @@
             "Fisherman Cooperative Society Passbook With Photo",
             "Voter ID"
         ],
-        "images": ["/assets/images/e-sevai/e11.jpg"],
+        "images": ["/assets/images/e-sevai/e16.png"],
         "time": "30 days"
     },
     {
@@ -254,7 +254,7 @@
             "10th & 12th Marksheet & TC",
             "Additional Skills Certificate"
         ],
-        "images": ["/assets/images/taxs/cert1.jpg"],
+        "images": ["/assets/images/taxs/cert7.png"],
         "time": "2 days"
     },
     {
