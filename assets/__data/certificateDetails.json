@@ -8,9 +8,7 @@
             "Smart Card",
             "Father/Mother Community Certificate"
         ],
-        "images": [
-            "/assets/images/taxs/cert.jpg"
-        ],
+        "images": ["/assets/images/e-sevai/cc.png"],
         "time": "7 days"
     },
     {
@@ -21,7 +19,7 @@
             "Family Members Aadhaar Card",
             "Smart Card"
         ],
-        "images": ["/assets/images/taxs/cert1.jpg"],
+        "images": ["/assets/images/e-sevai/ic.png"],
         "time": "7 days"
         },
     {
@@ -32,7 +30,7 @@
             "Family Members Aadhaar Card",
             "Smart Card"
         ],
-        "images": [ "/assets/images/taxs/cert6.png"],
+        "images": [ "/assets/images/e-sevai/rc.png"],
         "time": "7 days"
     },
     {
@@ -45,7 +43,7 @@
             "Father/Mother Community Certificate",
             "Birth Certificate (OR) School TC"
         ],
-        "images": ["/assets/images/taxs/cert3.jpg"],
+        "images": ["/assets/images/e-sevai/nc.png"],
         "time": "7 days"
     },
     {
@@ -58,7 +56,7 @@
             "School TC",
             "Family Members Education Qualification Details"
         ],
-        "images": ["../assets/images/e-sevai/e1.jpg"],
+        "images": ["../assets/images/e-sevai/obcc.png"],
         "time": "7 days"
     },
     {
@@ -68,7 +66,7 @@
             "Applicant Photo",
             "School Transfer Certificate"
         ],
-        "images": [ "../assets/images/e-sevai/e2.jpg"],
+        "images": [ "../assets/images/e-sevai/fg.png"],
         "time": "10 days"
     },
     {
@@ -80,7 +78,7 @@
             "Smart Card",
             "Husband Death Certificate"
         ],
-        "images": ["../assets/images/e-sevai/e3.jpg"],
+        "images": ["../assets/images/e-sevai/tmc.png"],
         "time": "7 days"
     },
     {
@@ -93,7 +91,7 @@
             "Death Person Family Members Aadhar Card",
             "Applicant Photo"
         ],
-        "images": [ "../assets/images/e-sevai/e4.jpg"],
+        "images": [ "../assets/images/e-sevai/wc.png"],
         "time": "15 days"
     },
     {
@@ -107,7 +105,7 @@
             "Residence Certificate",
             "Mother Sterilization Certificate"
         ],
-        "images": ["../assets/images/e-sevai/e5.jpg"],
+        "images": ["../assets/images/e-sevai/lhc.png"],
         "time": "30 days"
     },
     {
@@ -121,7 +119,7 @@
             "Widow Certificate",
             "Bank Passbook"
         ],
-        "images": [ "/assets/images/e-sevai/e6.jpg"],
+        "images": [ "/assets/images/e-sevai/nmcc.png"],
         "time": "15 days"
     },
     {
@@ -133,7 +131,7 @@
             "Smart Card",
             "Marriage Invitation"
         ],
-        "images": ["/assets/images/e-sevai/e7.jpg"],
+        "images": ["/assets/images/e-sevai/dwic.png"],
         "time": "15 days"
     },
     {
@@ -145,7 +143,7 @@
             "Smart Card",
             "Bank Passbook"
         ],
-        "images": [ "/assets/images/e-sevai/e8.jpg"],
+        "images": [ "/assets/images/e-sevai/um.png"],
         "time": "15 days"
     },
     {
@@ -157,7 +155,7 @@
             "Proof Of Marriage",
             "Proof Of Desertion FIR Details"
         ],
-        "images": ["/assets/images/e-sevai/cert7.png"],
+        "images": ["/assets/images/e-sevai/ignoaps.png"],
         "time": "30 days"
     },
     {
@@ -173,7 +171,7 @@
             "Voter ID",
             "Address Proof (If the Given Residential Address is Different From Aadhar)"
         ],
-        "images": [ "/assets/images/e-sevai/e10.jpg"],
+        "images": [ "/assets/images/e-sevai/dap.png"],
         "time": "30 days"
     },
     {
@@ -187,7 +185,7 @@
             "Fisherman Cooperative Society Passbook With Photo",
             "Voter ID"
         ],
-        "images": ["/assets/images/e-sevai/e16.png"],
+        "images": ["/assets/images/e-sevai/dwc.png"],
         "time": "30 days"
     },
     {
@@ -196,7 +194,7 @@
         "documents": [
             "Challan Payment (Drink & Drive, Driving License, Insurance, Going Without A Helmet)"
         ],
-        "images": [ "/assets/images/e-sevai/e12.jpg"],
+        "images": [ "/assets/images/e-sevai/fisher-ban.png"],
         "time": "15 days"
     },
     {
@@ -205,7 +203,7 @@
         "documents": [
             "Challan Payment (Drink & Drive, Driving License, Insurance, Going Without A Helmet)"
         ],
-        "images": ["/assets/images/e-sevai/e13.jpg"],
+        "images": ["/assets/images/e-sevai/fisher.png"],
         "time": "15 days"
     },
     {
@@ -216,7 +214,7 @@
             "Aadhaar Card",
             "Payment 500/-"
         ],
-        "images": [ "/assets/images/e-sevai/e14.jpg"],
+        "images": [ "/assets/images/e-sevai/tp.png"],
         "time": "2 days"
     },
     {
@@ -230,7 +228,7 @@
             "Change of Address In Ration Card",
             "Smart Card"
         ],
-        "images": ["/assets/images/e-sevai/e15.jpg"],
+        "images": ["/assets/images/e-sevai/pv.png"],
         "time": "15 days"
     },
     {
@@ -242,7 +240,7 @@
             "Smart Card",
             "Father/Mother Community Certificate"
         ],
-        "images": [ "/assets/images/taxs/cert3.jpg"],
+        "images": [ "/assets/images/taxs/cert.jpg"],
         "time": "15 days"
     },
     {
@@ -254,7 +252,7 @@
             "10th & 12th Marksheet & TC",
             "Additional Skills Certificate"
         ],
-        "images": ["/assets/images/taxs/cert7.png"],
+        "images": ["/assets/images/taxs/cert3.jpg"],
         "time": "2 days"
     },
     {

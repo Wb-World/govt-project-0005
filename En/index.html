@@ -83,15 +83,15 @@
             <img src="../assets/icons/TamilNadu_Logo.svg" alt="Logo" class="h-12 md:h-16" />
             <div class="leading-tight">
               <h1 class="text-lg md:text-2xl">KOVALAM PANCHAYAT</h1>
-              <span class="text-sm md:text-lg">Corruption Free Administration</span>
+              <span class="text-sm md:text-lg"><b>Corruption Free Administration</b></span>
             </div>
           </div>
-        
-          <!-- Right: ☰ Menu + தமிழ் link (desktop only) -->
-          <!-- Right: ☰ Menu + தமிழ் link (desktop only) -->
+
           <div class="flex items-center space-x-6">
             <!-- தமிழ் only on desktop -->
-            <a href="../Ta/index.html" class="hidden lg:block text-white underline text-lg md:text-xl hover:text-amber-200"><i>தமிழ்</i></a>
+            <a href="../Ta/index.html" class="hidden lg:inline-block px-6 py-3 mr-10 bg-orange-500 text-white text-base md:text-lg font-semibold rounded-full shadow-md hover:bg-orange-600 transition">
+              <b>தமிழ்</b>
+            </a>                       
 
             <!-- ☰ Menu only on mobile/tablet -->
             <button id="menuButton" class="text-white text-2xl focus:outline-none block lg:hidden">
@@ -101,22 +101,13 @@
 
         </header>
         
-    
-        <!-- Mobile Navigation Menu -->
+
         <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
         <nav id="mobileMenu" data-aos="fade-left" data-aos-duration="3000"
             class="hidden fixed top-0 right-0 w-2/3 h-screen bg-gradient-to-r from-amber-600 to-amber-400 text-white p-6 shadow-lg z-50 lg:hidden overflow-y-auto">
             <button id="closeMenu" class="text-white text-2xl absolute top-4 right-4">✖</button>
             <ul class="mt-10 space-y-4 relative">
-                
-                <!-- <li>
-                    <button id="mobileEnBtn" onclick="setLanguage('En')" class="hover:underline cursor-pointer"><h6>English</h6></button>
-                    <button id="mobileTaBtn" onclick="setLanguage('Ta')" class="hover:underline cursor-pointer"><h6>தமிழ்</h6></button>
-                </li>  -->
 
-               
-
-                <!-- Main Menu Items -->
                 <li>
                     <div onclick="mobileshowSection('Home', this)" class="nav-item text-white cursor-pointer ">
                         <a href="#Home" class="nav-item  text-lg hover:underline block">Home</a>
@@ -134,8 +125,7 @@
                         <a href="#Services" class=" text-lg hover:underline block">Services</a>
                     </div>
                     <div class="absolute left-0 mt-2 w-48 bg-slate-50 shadow-lg rounded-lg opacity-0 invisible pointer-events-none
-                        group-hover:pointer-events-auto group-hover:opacity-100 group-hover:visible
-                        transition-all duration-300 z-50">
+                        group-hover:pointer-events-auto group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <ul class="text-gray-950 text-base">
                             <li onclick="MobileShowList('Tax_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
                                 <a href="#Tax_Management">Tax Management</a>
@@ -163,8 +153,8 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-
+                </li>     
+                    
                 <!-- Events Dropdown -->
                 <li class="relative group">
                     <div class="nav-item text-white cursor-pointer peer">
@@ -482,17 +472,23 @@
             <div id="background-mobile" class="absolute inset-0 w-full h-full bg-cover bg-center bg-move block lg:hidden" 
                  style="background-image: url('/assets/images/background_mobile.jpg');"></div>
           
-            <!-- Notification Box -->
+
             <div id="notifications" 
-                 class="absolute top-24 right-4 w-[90vw] max-w-[calc(100vw-2rem)] lg:w-[40vw] text-black p-6 rounded-2xl transition-all duration-300 
-                        flex flex-col hidden lg:block backdrop-blur-sm border-2 border-amber-300">
+                 class="absolute top-24 right-4 w-[80vw] max-w-[calc(50vw-2rem)] lg:w-[30vw] text-black p-6 rounded-2xl transition-all duration-300 
+                        flex flex-col hidden lg:block backdrop-blur-sm border-4 border-amber-300" style="margin-top: 5cap;">
               <div class="relative z-10 flex items-start">
                 <div class="flex-1">
                   <h3 class="text-3xl md:text-2xl text-amber-800 mb-1 flex items-center">
                   </h3>
-                  <p class="text-gray-950 mb-2 text-xl">Happy Tamil New Year 2024! Wishing you prosperity and joy this Puthandu (April 14).</p>
+                  <p class="text-gray-950 mb-2 text-xl text-orange-600">
+                    <b>
+                    🎉 Happy Tamil New Year 2024! 🎊
+                    🌸 Puthandu Nalvazhthukkal!
+                    Wishing you a year filled with happiness, good health, and prosperity.
+                    May this Puthandu (April 14) bring new beginnings, success in all your efforts, and joy that lasts all year long!
+                    </b>
+                  </p>
           
-                  <!-- Divider -->
                   <div class="flex items-center my-3">
                     <div class="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
                     <div class="mx-2 text-amber-500">✨</div>
@@ -502,6 +498,7 @@
               </div>
             </div>
           </div>
+
           <!-- Tamil Slogan Section (with animation, visible on all devices, placed under image) -->
           <div class="w-full h-32 bg-gradient-to-br from-orange-500 to-amber-600 shadow-xl flex items-center justify-center px-6 z-20 relative overflow-hidden">
             <!-- Decorative animated circles -->
@@ -518,20 +515,19 @@
 
             <!-- Main content -->
             <div class="text-center relative z-10">
-              <h1 class="text-xl md:text-2xl font-bold text-white drop-shadow-lg">
+              <h1 style="color: white; font-size: 2rem; font-weight: bold;">
                 சேவை என்பது தலைமைக்கானதல்ல
-              </h1>
+              </h1>              
 
               <div class="flex justify-center mt-0 pt-0">
-                <div class="w-[75vw] h-1 bg-white/60 rounded-full"></div>
+                <div class="w-[34vw] h-1 bg-white/60 rounded-full"></div>
               </div>
-
-              <h1 class="text-xl md:text-2xl font-bold text-white drop-shadow-lg mt-2">
+              <h1 style="color: white; font-size: 2rem; font-weight: bold;">
                 தலைமுறைக்கானது
-              </h1>
+              </h1>   
 
               <div class="flex justify-center mt-0 pt-0">
-                <div class="w-[40vw] h-1 bg-white/60 rounded-full"></div>
+                <div class="w-[20vw] h-1 bg-white/60 rounded-full"></div>
               </div>
             </div>
           </div>
@@ -1094,7 +1090,7 @@ function updateCarousel() {
             
 <!-- Kovalam Section -->
 <section class="relative p-8 sm:p-12 mb-16 bg-gradient-to-b from-white to-blue-50 shadow-lg overflow-hidden">
-    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1470&auto=format&fit=crop')] opacity-25 bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-[url('../assets/images/kovalam-bg.jpg')] opacity-25 bg-cover bg-center"></div>
     
     <div class="relative z-10">
     <div class="text-center mb-12">
@@ -1156,7 +1152,7 @@ function updateCarousel() {
 
 <!-- Demographics Section -->
 <section class="relative p-8 sm:p-12 mb-16 bg-gradient-to-b from-white to-amber-50 shadow-lg overflow-hidden">
-    <div class="absolute inset-0 bg-[url('/assets/images/beach/BlueBeach.jpg')] opacity-25 bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-[url('../assets/images/demographics-bg.jpg')] opacity-25 bg-cover bg-center"></div>
     
     <div class="relative z-10">
     <div class="text-center mb-12">
@@ -1543,7 +1539,7 @@ function updateCarousel() {
       <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-[1.01]">
         <div class="md:flex">
           <div class="md:w-1/3 relative group overflow-hidden">
-            <div class="bg-cover bg-center h-64 md:h-full transition-all duration-500 group-hover:scale-110" style="background-image: url(../assets/images/beach/1.jpg);"></div>
+            <div class="bg-cover bg-center h-64 md:h-full transition-all duration-500 group-hover:scale-110" style="background-image: url(../assets/images/beach/beach.png);"></div>
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <h3 class="text-2xl sm:text-3xl text-white">KOVALAM BEACH</h3>
               <div class="flex space-x-3 mt-2 text-lg sm:text-xl">
