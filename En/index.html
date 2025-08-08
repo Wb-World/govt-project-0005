@@ -762,6 +762,25 @@
           document.body.style.overflow = "auto";
       }
 
+      const modal = document.getElementById("eventModal");
+const cancelBtn = document.getElementById("cancelBtn");
+
+// Method 1: Cancel button click
+cancelBtn.addEventListener('click', function () {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "auto";
+});
+
+// Method 2: Click outside modal content (overlay click)
+modal.addEventListener('click', function (e) {
+    if (e.target === modal) { // only overlay
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+    }
+});
+
+
+
       function closeMobileMenu() {
           const mobileMenu = document.getElementById("mobileMenu");
           const overlay = document.getElementById("overlay");
@@ -893,7 +912,7 @@ function updateCarousel() {
              <ul id="documentsList" class="list-disc pl-5 text-sm sm:text-base"></ul> <!-- Added missing ID -->
              <p id="eventTime" class="mt-2 text-sm sm:text-base"><strong>Time Period:</strong></p> <!-- Added missing ID -->
              <div class="flex justify-end">
-                 <button onclick="closeModal()" class="text-red-700 text-base sm:text-xl hover:text-red-900">
+                 <button id="cancelBtn" class="text-red-700 text-base sm:text-xl hover:text-red-900">
                      Cancel  
                  </button>
              </div>

@@ -19,7 +19,7 @@
             "Family Members Aadhaar Card",
             "Smart Card"
         ],
-        "images": ["/assets/images/e-sevai/ic.png"],
+        "images": ["/assets/images/e-sevai/nc.png"],
         "time": "7 days"
         },
     {
@@ -30,7 +30,7 @@
             "Family Members Aadhaar Card",
             "Smart Card"
         ],
-        "images": [ "/assets/images/e-sevai/rc.png"],
+        "images": [ "/assets/images/e-sevai/ic.png"],
         "time": "7 days"
     },
     {
@@ -43,7 +43,7 @@
             "Father/Mother Community Certificate",
             "Birth Certificate (OR) School TC"
         ],
-        "images": ["/assets/images/e-sevai/nc.png"],
+        "images": ["/assets/images/e-sevai/rc.png"],
         "time": "7 days"
     },
     {
