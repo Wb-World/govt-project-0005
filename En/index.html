@@ -2684,13 +2684,37 @@ function updateCarousel() {
           </div>
         </section>
 
-        
+        <style>
+          #E_Sevai {
+            position: relative;
+            background: url('/assets/images/es-logo.png') center/cover no-repeat;
+          }
+
+          #E_Sevai::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adjust opacity for dimness */
+            z-index: 0;
+          }
+
+          #E_Sevai .content,
+          #E_Sevai section,
+          #E_Sevai div {
+            position: relative;
+            z-index: 1; /* Keeps text above overlay */
+          }
+
+        </style>
+        <section class="max-w-8xl mx-auto my-8 section">
+          <h2 class="text-2xl sm:text-3xl  text-amber-600 mb-4 text-center">E-SEVAI SERVICE</h2>
+        </section>
         <div id="E_Sevai" class="content hidden">
             <!-- Services Section -->
-            <section class="max-w-8xl mx-auto my-8 section">
-                <h2 class="text-2xl sm:text-3xl  text-amber-600 mb-4 text-center">E-SEVAI SERVICE</h2>
-                
-            </section>
+            
         <!-- Certificates -->
             <div id="certificatesListContainer" class="flex flex-wrap gap-6 max-w-8xl mx-auto p-6">
 
