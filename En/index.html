@@ -863,7 +863,8 @@ if (currentImages.length > 0) {
 
 modal.classList.remove("hidden");
 document.body.style.overflow = "hidden";
-setTimeout(() => modalContent.classList.remove("opacity-0", "scale-95"), 10);
+document.body.style.translate = 'none';
+setTimeout(() => modalContent.classList.remove("opacity-0"), 10);
 }
 
 
@@ -1823,7 +1824,7 @@ function updateCarousel() {
       <!-- Services Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         <!-- Medical Facility -->
-        <article class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+        <article class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover">
           <div class="p-8">
             <div class="flex items-center">
               <div class="flex-shrink-0 bg-stone-100 p-4 rounded-lg">
@@ -1845,7 +1846,7 @@ function updateCarousel() {
         </article>
   
         <!-- Lifeguard Services -->
-        <article class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+        <article class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover">
           <div class="p-8">
             <div class="flex items-center">
               <div class="flex-shrink-0 bg-amber-50 p-4 rounded-lg">
@@ -1867,7 +1868,7 @@ function updateCarousel() {
         </article>
   
         <!-- CCTV Surveillance -->
-        <article class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+        <article class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover">
           <div class="p-8">
             <div class="flex items-center">
               <div class="flex-shrink-0 bg-slate-100 p-4 rounded-lg">
@@ -1889,7 +1890,7 @@ function updateCarousel() {
         </article>
   
         <!-- Fire & Safety -->
-        <article class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+        <article class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover">
           <div class="p-8">
             <div class="flex items-center">
               <div class="flex-shrink-0 bg-red-50 p-4 rounded-lg">
@@ -2472,7 +2473,7 @@ function updateCarousel() {
               <h3 class="text-xl sm:text-2xl text-amber-600 mb-8 pl-2 border-l-4 border-amber-500">Luxury Hotels</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Taj Fisherman's Cove -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition hover:-translate-y-2">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition hover">
                   <div class="h-48 bg-cover bg-center flex items-center justify-center" style="background-image: url('/assets/images/infrastructure/hotels/TajFisherman\'sCove.jpg');">
                     <span class="text-white text-xl  text-center px-4">Taj Fisherman's Cove</span>
                   </div>
@@ -2487,7 +2488,7 @@ function updateCarousel() {
                 </div>
                 
                 <!-- Vivanta by Taj -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition hover:-translate-y-2">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition hover">
                   <div class="h-48 bg-cover bg-center flex items-center justify-center" style="background-image: url('/assets/images/infrastructure/hotels/VivantabyTaj-Fisherman\'sCove.jpg');">
                     <span class="text-white text-xl  text-center px-4">Vivanta by Taj - Fisherman's Cove</span>
                   </div>
@@ -2701,7 +2702,7 @@ function updateCarousel() {
             z-index: 0;
           }
 
-          #E_Sevai .content,
+          /* #E_Sevai .content, */
           #E_Sevai section,
           #E_Sevai div {
             position: relative;
@@ -2714,8 +2715,7 @@ function updateCarousel() {
           <section class="max-w-8xl mx-auto my-8 section">
             <h2 class="text-2xl sm:text-3xl  text-amber-600 mb-4 text-center">E-SEVAI SERVICE</h2>
           </section>
-            <div id="certificatesListContainer" class="flex flex-wrap gap-6 max-w-8xl mx-auto p-6">
-
+            <!-- <div id="certificatesListContainer" class="flex flex-wrap gap-6 max-w-8xl p-6">
                 <script>
                     // Load JSON and dynamically create elements
                     fetch("/assets/__data/certificatesList.json")
@@ -2744,7 +2744,83 @@ function updateCarousel() {
                       })
                       .catch(error => console.error("Error loading certificates:", error));
                   </script>
-            </div> 
+            </div>  -->
+            <div id="certificatesListContainer" class="flex flex-wrap gap-6 max-w-8xl p-6">
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                <a href="#Certificate-1" class="text-gray-950" onclick="openServiceModal('Certificate-1')">Community Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                <a href="#Certificate-2" class="text-gray-950" onclick="openServiceModal('Certificate-2')">Income Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                <a href="#Certificate-3" class="text-gray-950" onclick="openServiceModal('Certificate-3')">Residence Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                <a href="#Certificate-4" class="text-gray-950" onclick="openServiceModal('Certificate-4')">Nativity Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                <a href="#Certificate-5" class="text-gray-950" onclick="openServiceModal('Certificate-5')">Other Backward Class(OBC) Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                <a href="#Certificate-6" class="text-gray-950" onclick="openServiceModal('Certificate-6')">First Graduate Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-7" class="text-gray-950" onclick="openServiceModal('Certificate-7')">Tamil Medium Certificate (PSTM)</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-8" class="text-gray-950" onclick="openServiceModal('Certificate-8')">Widow Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-9" class="text-gray-950" onclick="openServiceModal('Certificate-9')">Legal Heir Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-10" class="text-gray-950" onclick="openServiceModal('Certificate-10')">No Male Child Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-11" class="text-gray-950" onclick="openServiceModal('Certificate-11')">Destitute Widow Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-12" class="text-gray-950" onclick="openServiceModal('Certificate-12')">Unmarried Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-13" class="text-gray-950" onclick="openServiceModal('Certificate-13')">Indira Gandhi National Old Age Pension Scheme (IGNOPS)</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-14" class="text-gray-950" onclick="openServiceModal('Certificate-14')">Differently Abled Pension (DAPS)</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-15" class="text-gray-950" onclick="openServiceModal('Certificate-15')">Deserted Woman Certificate</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-16" class="text-gray-950" onclick="openServiceModal('Certificate-16')">Renewal of Relief Assistance to Marine Fisherman During Ban Period</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-17" class="text-gray-950" onclick="openServiceModal('Certificate-17')">Renewal of Special Allowance to Marine Fisherman During Fishing Lean Period</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-18" class="text-gray-950" onclick="openServiceModal('Certificate-18')">Traffic Police</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-19" class="text-gray-950" onclick="openServiceModal('Certificate-19')">Police Verification (NOC)</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-20" class="text-gray-950" onclick="openServiceModal('Certificate-20')">Department of Civil Supplies and Consumer Protection</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-21" class="text-gray-950" onclick="openServiceModal('Certificate-21')">Department of Employment and Training</a>
+              </div>
+              <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
+                  <a href="#Certificate-22" class="text-gray-950" onclick="openServiceModal('Certificate-22')">Aadhar Card Address Change</a>
+              </div>
+              <script>
+                setTimeout(() => {
+  document.querySelectorAll(".certificate-item").forEach(item => {
+    item.style.transform = "none";
+  });
+}, 5000); // after bounce ends
+
+            </script>
+          </div>
         </div>
 
         <!-- tax management -->
