@@ -30,7 +30,7 @@
             "Family Members Aadhaar Card",
             "Smart Card"
         ],
-        "images": [ "/assets/images/e-sevai/ic.png"],
+        "images": ["/assets/images/e-sevai/fisher-ban.png"],
         "time": "7 days"
     },
     {
@@ -43,7 +43,7 @@
             "Father/Mother Community Certificate",
             "Birth Certificate (OR) School TC"
         ],
-        "images": ["/assets/images/e-sevai/rc.png"],
+        "images": ["../assets/images/e-sevai/fg.png"],
         "time": "7 days"
     },
     {
@@ -66,7 +66,7 @@
             "Applicant Photo",
             "School Transfer Certificate"
         ],
-        "images": [ "../assets/images/e-sevai/fg.png"],
+        "images": ["/assets/images/e-sevai/rc.png"],
         "time": "10 days"
     },
     {
@@ -194,7 +194,7 @@
         "documents": [
             "Challan Payment (Drink & Drive, Driving License, Insurance, Going Without A Helmet)"
         ],
-        "images": [ "/assets/images/e-sevai/fisher-ban.png"],
+        "images": ["/assets/images/e-sevai/ic.png"],
         "time": "15 days"
     },
     {
