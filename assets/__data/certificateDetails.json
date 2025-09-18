@@ -252,7 +252,7 @@
             "10th & 12th Marksheet & TC",
             "Additional Skills Certificate"
         ],
-        "images": ["/assets/images/taxs/cert3.jpg"],
+        "images": ["/assets/images/taxs/t3.jpg"],
         "time": "2 days"
     },
     {
@@ -264,7 +264,7 @@
             "Voter Identity Card",
             "Bank Passbook"
         ],
-        "images": [ "/assets/images/aadhar_camp/3.jpg"],
+        "images": [ "/assets/images/aadhar_camp/1.JPG"],
         "time": "15 days"
     }
 ]
