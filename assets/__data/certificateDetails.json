@@ -43,7 +43,7 @@
             "Father/Mother Community Certificate",
             "Birth Certificate (OR) School TC"
         ],
-        "images": ["../assets/images/e-sevai/fg.png"],
+        "images": ["../assets/images/e-sevai/wc.png"],
         "time": "7 days"
     },
     {
@@ -143,7 +143,7 @@
             "Smart Card",
             "Bank Passbook"
         ],
-        "images": [ "/assets/images/e-sevai/wc.png"],
+        "images": [ "/assets/images/e-sevai/fg.png"],
         "time": "15 days"
     },
     {
@@ -155,7 +155,7 @@
             "Proof Of Marriage",
             "Proof Of Desertion FIR Details"
         ],
-        "images": ["/assets/images/e-sevai/ignoaps.png"],
+        "images": ["/assets/images/e-sevai/dwc.png"],
         "time": "30 days"
     },
     {
@@ -185,7 +185,7 @@
             "Fisherman Cooperative Society Passbook With Photo",
             "Voter ID"
         ],
-        "images": ["/assets/images/e-sevai_pv.png"],
+        "images": ["/assets/images/e-sevai/ic.png"],
         "time": "30 days"
     },
     {
@@ -194,7 +194,7 @@
         "documents": [
             "Challan Payment (Drink & Drive, Driving License, Insurance, Going Without A Helmet)"
         ],
-        "images": ["/assets/images/e-sevai/ic.png"],
+        "images": ["/assets/images/e-sevai/fisher.png"],
         "time": "15 days"
     },
     {
@@ -203,7 +203,7 @@
         "documents": [
             "Challan Payment (Drink & Drive, Driving License, Insurance, Going Without A Helmet)"
         ],
-        "images": ["/assets/images/e-sevai/fisher.png"],
+        "images": ["/assets/images/e-sevai/_pv.png"],
         "time": "15 days"
     },
     {
@@ -240,7 +240,7 @@
             "Smart Card",
             "Father/Mother Community Certificate"
         ],
-        "images": [ "/assets/images/taxs/cert.jpg"],
+        "images": [ "/assets/images/taxs/t11.jpg"],
         "time": "15 days"
     },
     {
