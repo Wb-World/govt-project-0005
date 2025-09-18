@@ -131,7 +131,7 @@
             "Smart Card",
             "Marriage Invitation"
         ],
-        "images": ["/assets/images/e-sevai/ic.png"],
+        "images": ["/assets/images/e-sevai/dwic.png"],
         "time": "15 days"
     },
     {
@@ -143,7 +143,7 @@
             "Smart Card",
             "Bank Passbook"
         ],
-        "images": [ "/assets/images/e-sevai/ignoaps.png"],
+        "images": [ "/assets/images/e-sevai/um.png"],
         "time": "15 days"
     },
     {
@@ -155,7 +155,7 @@
             "Proof Of Marriage",
             "Proof Of Desertion FIR Details"
         ],
-        "images": ["/assets/images/e-sevai/wc.png"],
+        "images": ["/assets/images/e-sevai/ignoaps.png"],
         "time": "30 days"
     },
     {
@@ -185,7 +185,7 @@
             "Fisherman Cooperative Society Passbook With Photo",
             "Voter ID"
         ],
-        "images": ["/assets/images/e-sevai/wc.png"],
+        "images": ["/assets/images/e-sevai/dwc.png"],
         "time": "30 days"
     },
     {
