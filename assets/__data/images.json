@@ -68,8 +68,8 @@
       "3": ["/", "/", "/", "/"]
     },
     "well": {
-     "1":  ["/assets/images/OHTCleaning/1.jpg", "/assets/images/OHTCleaning/2.jpg", "/assets/images/OHTCleaning/3.jpg", "/assets/images/OHTCleaning/4.jpg"],
-     "2":  ["/assets/images/OHTChlorination/CH-10.jpg", "/assets/images/OHTChlorination/CH-8.jpg", "/assets/images/OHTChlorination/well-1.jpg","/assets/images/OHTChlorination/CH-9.JPG"]
+     "1":  ["/assets/images/OHTCleaning/5.jpg","/assets/images/OHTCleaning/7.jpg","/assets/images/OHTCleaning/8.jpg","/assets/images/OHTCleaning/9.jpg"],
+     "2":  ["/assets/images/OHTChlorination/CH-10.jpg", "/assets/images/OHTChlorination/CH-8.jpg", "/assets/images/OHTChlorination/well-1.jpg","/assets/images/OHTCleaning/10.jpg"]
     },
     "road": {
       "1": ["/assets/images/ROAD/annaNagar/42.jpg","/assets/images/ROAD/annaNagar/DJI_0700.JPG","/assets/images/ROAD/annaNagar/KFAP8234.JPG","/assets/images/ROAD/ansariNagar/45.jpeg"],
