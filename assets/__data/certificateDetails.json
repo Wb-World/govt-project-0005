@@ -8,7 +8,7 @@
             "Smart Card",
             "Father/Mother Community Certificate"
         ],
-        "images": ["/assets/images/e-sevai/cc.png"],
+        "images": ["/assets/images/e-sevai/ignoaps.png"],
         "time": "7 days"
     },
     {
@@ -43,7 +43,7 @@
             "Father/Mother Community Certificate",
             "Birth Certificate (OR) School TC"
         ],
-        "images": ["../assets/images/e-sevai/wc.png"],
+        "images": ["../assets/images/e-sevai/cc.png"],
         "time": "7 days"
     },
     {
@@ -264,7 +264,7 @@
             "Voter Identity Card",
             "Bank Passbook"
         ],
-        "images": [ "/assets/images/aadhar_camp/1.JPG"],
+        "images": [ "/assets/images/e-sevai/ac.png"],
         "time": "15 days"
     }
 ]

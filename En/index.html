@@ -129,28 +129,28 @@
                         group-hover:pointer-events-auto group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <ul class="text-gray-950 text-base">
                             <li onclick="MobileShowList('Tax_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Tax_Management">Tax Management</a>
+                                <a href="#Tax_Management" id="d1">Tax Management</a>
                             </li>
                             <li onclick="MobileShowList('E_Sevai', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#E_Sevai">E Sevai</a>
+                                <a href="#E_Sevai" id="d2">E Sevai</a>
                             </li>
                             <li onclick="MobileShowList('Water_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Water_Management">Water Management</a>
+                                <a href="#Water_Management" id="d3">Water Management</a>
                             </li>
                             <li onclick="MobileShowList('Garbage_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Garbage_Management">Garbage Management</a>
+                                <a href="#Garbage_Management" id="d4">Garbage Management</a>
                             </li>
                             <li onclick="MobileShowList('Electricity', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Electricity">Electricity</a>
+                                <a href="#Electricity" id="d5">Electricity</a>
                             </li>
                             <li onclick="MobileShowList('Drainage', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Drainage">Drainage</a>
+                                <a href="#Drainage" id="d6">Drainage</a>
                             </li>
                             <li onclick="MobileShowList('Disaster_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Disaster_Management">Disaster Management</a>
+                                <a href="#Disaster_Management" id="d7">Disaster Management</a>
                             </li>
                             <li onclick="MobileShowList('Others', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Others">Others</a>
+                                <a href="#Others" id="d8">Others</a>
                             </li>
                         </ul>
                     </div>
@@ -2884,7 +2884,7 @@ function updateCarousel() {
                     <div class="grid grid-cols-2 gap-4 mt-4">
                         <!-- Item 1 -->
                         <div class="flex flex-col items-center space-y-4">
-                            <img src="/assets/images/taxs/t18.jpg" class="rounded-lg shadow" alt="Tax Image 1" style="width: 100cap;height: 13cap;">
+                            <img src="/assets/images/taxs/t18.jpg" class="rounded-lg shadow" alt="Tax Image 1" style="width: 100cap;height: 25cap;">
                         </div>
                         <!-- Item 2 -->
                         <div class="flex flex-col items-center space-y-4">
@@ -2939,13 +2939,102 @@ function updateCarousel() {
                         <img src="/assets/images/taxs/t7.jpg" class="rounded-lg shadow" alt="Approval Image 2">
                         <img src="/assets/images/taxs/t22.jpg" class="rounded-lg shadow" alt="Approval Image 2">
                         <img src="/assets/images/taxs/t6.jpg" class="rounded-lg shadow" alt="Approval Image 2">
-
                     </div>
-                </div>
-            </div>
+                </div>  
+                <div style="position: fixed; bottom: 80px; right: 20px; display: flex; gap: 15px;">
+                  <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" id="prevBtn">Prev</a>
+                  <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" id="nextBtn">Next</a>
+                </div> 
+            </div>   
         </div>
-
-
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            const menuList = [
+              "Tax_Management",
+              "E_Sevai",
+              "Water_Management",
+              "Garbage_Management",
+              "Electricity",
+              "Drainage",
+              "Disaster_Management",
+              "Others"
+            ];
+          
+            const dropdownIds = ["d1","d2","d3","d4","d5","d6","d7","d8"];
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+          
+            function getCurrentIndex() {
+              const hash = window.location.hash.substring(1);
+              const idx = menuList.indexOf(hash === "" ? menuList[0] : hash);
+              return idx === -1 ? 0 : idx;
+            }
+          
+            // Instead of clicking the <a>, trigger the function behind it
+            function triggerDropdown(index) {
+              const dropdownId = dropdownIds[index];
+              const li = document.querySelector(`#${dropdownId}`).closest("li");
+              if(li && typeof li.onclick === "function") {
+                li.onclick(); // call the onclick function (MobileShowList)
+              }
+            }
+          
+            function scrollToSection(sectionId) {
+              const section = document.getElementById(sectionId);
+              if(section) section.scrollIntoView({ behavior: "smooth" });
+            }
+          
+            function updateButtons() {
+              const idx = getCurrentIndex();
+          
+              // Prev button
+              if(idx > 0) {
+                prevBtn.style.display = "inline-block";
+                prevBtn.onclick = (e) => {
+                  e.preventDefault();
+                  const targetIndex = idx - 1;
+                  const targetId = menuList[targetIndex];
+                  scrollToSection(targetId);
+                  setTimeout(() => {
+                    window.location.hash = targetId;
+                    triggerDropdown(targetIndex);
+                  }, 300);
+                };
+              } else {
+                prevBtn.style.display = "none";
+              }
+          
+              // Next button
+              if(idx < menuList.length - 1) {
+                nextBtn.style.display = "inline-block";
+                nextBtn.onclick = (e) => {
+                  e.preventDefault();
+                  const targetIndex = idx + 1;
+                  const targetId = menuList[targetIndex];
+                  scrollToSection(targetId);
+                  setTimeout(() => {
+                    window.location.hash = targetId;
+                    triggerDropdown(targetIndex);
+                  }, 300);
+                };
+              } else {
+                nextBtn.style.display = "none";
+              }
+            }
+          
+            // Initialize
+            if(!window.location.hash) window.location.hash = menuList[0];
+            updateButtons();
+          
+            window.addEventListener("hashchange", () => {
+              const idx = getCurrentIndex();
+              scrollToSection(menuList[idx]);
+              triggerDropdown(idx);
+              updateButtons();
+            });
+          });
+          </script>
+             
         <!-- water management -->
         <div id="Water_Management" class="content hidden rounded-xl p-6 w-full max-w-full mx-auto">
             <h1 class="text-2xl sm:text-3xl text-amber-600 mb-8 text-center" data-aos="animate-fade-in">WATER MANAGEMENT</h1>
@@ -2956,7 +3045,7 @@ function updateCarousel() {
                     onclick="showContent('OHTWaterProcess'); showTable('OHT'); " 
                     class="bg-white text-amber-500  px-4 py-3 rounded-lg shadow-sm border border-amber-200 hover:bg-slate-50 hover:border-amber-300 hover:text-amber-800 transition-all duration-200 flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-amber-500" viewBox="0 0 512 512" fill="currentColor">
-                        <path d="M241.7 3.4c9-4.5 19.6-4.5 28.6 0l160 80c15.8 7.9 22.2 27.1 14.3 42.9C439 137.5 427.7 144 416 144l0 80c0 17.7-14.3 32-32 32l-4.9 0 32 192 68.9 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-95.5 0c-.4 0-.8 0-1.1 0l-254.8 0c-.4 0-.8 0-1.1 0L32 512c-17.7 0-32-14.3-32-32s14.3-32 32-32l68.9 0 32-192-4.9 0c-17.7 0-32-14.3-32-32l0-80c-11.7 0-23-6.5-28.6-17.7c-7.9-15.8-1.5-35 14.3-42.9l160-80zM314.5 448L256 399.2 197.5 448l117 0zM197.8 256l-4.7 28.3L256 336.8l62.9-52.5L314.2 256l-116.5 0zm-13.9 83.2l-11.2 67L218.5 368l-34.6-28.8zM293.5 368l45.8 38.1-11.2-67L293.5 368zM176 128c-8.8 0-16 7.2-16 16s7.2 16 16 16l160 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-160 0z"/></svg>
+                      <path d="M241.7 3.4c9-4.5 19.6-4.5 28.6 0l160 80c15.8 7.9 22.2 27.1 14.3 42.9C439 137.5 427.7 144 416 144l0 80c0 17.7-14.3 32-32 32l-4.9 0 32 192 68.9 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-95.5 0c-.4 0-.8 0-1.1 0l-254.8 0c-.4 0-.8 0-1.1 0L32 512c-17.7 0-32-14.3-32-32s14.3-32 32-32l68.9 0 32-192-4.9 0c-17.7 0-32-14.3-32-32l0-80c-11.7 0-23-6.5-28.6-17.7c-7.9-15.8-1.5-35 14.3-42.9l160-80zM314.5 448L256 399.2 197.5 448l117 0zM197.8 256l-4.7 28.3L256 336.8l62.9-52.5L314.2 256l-116.5 0zm-13.9 83.2l-11.2 67L218.5 368l-34.6-28.8zM293.5 368l45.8 38.1-11.2-67L293.5 368zM176 128c-8.8 0-16 7.2-16 16s7.2 16 16 16l160 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-160 0z"/></svg>
                     </svg>
                     <h6 class="text-lg sm:text-xl">OHT Water</h6>
                 </button>
