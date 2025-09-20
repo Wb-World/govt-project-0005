@@ -1,0 +1,8 @@
+"Tax_Management",
+"E_Sevai",
+"Water_Management",
+"Garbage_Management",
+"Electricity",
+"Drainage",
+"Disaster_Management",
+"Others"

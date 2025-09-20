@@ -129,28 +129,28 @@
                         group-hover:pointer-events-auto group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <ul class="text-gray-950 text-base">
                             <li onclick="MobileShowList('Tax_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Tax_Management" id="d1">Tax Management</a>
+                                <a href="#Tax_Management">Tax Management</a>
                             </li>
                             <li onclick="MobileShowList('E_Sevai', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#E_Sevai" id="d2">E Sevai</a>
+                                <a href="#E_Sevai">E Sevai</a>
                             </li>
                             <li onclick="MobileShowList('Water_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Water_Management" id="d3">Water Management</a>
+                                <a href="#Water_Management">Water Management</a>
                             </li>
                             <li onclick="MobileShowList('Garbage_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Garbage_Management" id="d4">Garbage Management</a>
+                                <a href="#Garbage_Management">Garbage Management</a>
                             </li>
                             <li onclick="MobileShowList('Electricity', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Electricity" id="d5">Electricity</a>
+                                <a href="#Electricity">Electricity</a>
                             </li>
                             <li onclick="MobileShowList('Drainage', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Drainage" id="d6">Drainage</a>
+                                <a href="#Drainage">Drainage</a>
                             </li>
                             <li onclick="MobileShowList('Disaster_Management', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Disaster_Management" id="d7">Disaster Management</a>
+                                <a href="#Disaster_Management">Disaster Management</a>
                             </li>
                             <li onclick="MobileShowList('Others', this)" class="px-4 py-2 hover:bg-amber-100 cursor-pointer">
-                                <a href="#Others" id="d8">Others</a>
+                                <a href="#Others">Others</a>
                             </li>
                         </ul>
                     </div>
@@ -2716,36 +2716,7 @@ function updateCarousel() {
           <section class="max-w-8xl mx-auto my-8 section">
             <h2 class="text-2xl sm:text-3xl  text-amber-600 mb-4 text-center">E-SEVAI SERVICE</h2>
           </section>
-            <!-- <div id="certificatesListContainer" class="flex flex-wrap gap-6 max-w-8xl p-6">
-                <script>
-                    // Load JSON and dynamically create elements
-                    fetch("/assets/__data/certificatesList.json")
-                      .then(response => response.json())
-                      .then(certificates => {
-                        const container = document.getElementById("certificatesListContainer");
-                        certificates.forEach(cert => {
-                          const certDiv = document.createElement("div");
-                          certDiv.className =
-                            "animate-bounce certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg";
-                  
-                          certDiv.innerHTML = `
-                            <a href="#${cert.id}" class="text-gray-950" onclick="openServiceModal('${cert.id}')">
-                              ${cert.name}
-                            </a>
-                          `;
-                          container.appendChild(certDiv);
-                        });
-                  
-                        // Remove bounce animation after 9 seconds
-                        setTimeout(() => {
-                          document.querySelectorAll(".certificate-item").forEach(item => {
-                            item.classList.remove("animate-bounce");
-                          });
-                        }, 5000);
-                      })
-                      .catch(error => console.error("Error loading certificates:", error));
-                  </script>
-            </div>  -->
+            
             <div id="certificatesListContainer" class="flex flex-wrap gap-6 max-w-8xl p-6">
               <div class="certificate-item bg-slate-50 shadow-lg p-4 border-b-2 border border-amber-400 rounded-lg">
                 <a href="#Certificate-1" class="text-gray-950" onclick="openServiceModal('Certificate-1')">Community Certificate</a>
@@ -2822,9 +2793,11 @@ function updateCarousel() {
 
             </script>
           </div>
+          <div style="position: fixed; bottom: 40px; right: 20px; display: flex; gap: 15px;">
+            <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Tax_Management',this)">Prev</a>
+            <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Water_Management',this)">Next</a>
+          </div>
         </div>
-
-        <!-- tax management -->
 
         <div id="Tax_Management" class="content hidden rounded-xl p-6 w-full max-w-full">
             <h1 class="text-2xl sm:text-3xl text-center text-amber-600 mb-6">TAX MANAGEMENT</h1>
@@ -2940,101 +2913,15 @@ function updateCarousel() {
                         <img src="/assets/images/taxs/t22.jpg" class="rounded-lg shadow" alt="Approval Image 2">
                         <img src="/assets/images/taxs/t6.jpg" class="rounded-lg shadow" alt="Approval Image 2">
                     </div>
-                </div>  
+                </div>
                 <div style="position: fixed; bottom: 80px; right: 20px; display: flex; gap: 15px;">
-                  <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" id="prevBtn">Prev</a>
-                  <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" id="nextBtn">Next</a>
-                </div> 
+                  <!-- <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Water_Management',this)">Prev</a> -->
+                  <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('E_Sevai',this)">Next</a>
+                </div>  
             </div>   
         </div>
-        <script>
-          document.addEventListener("DOMContentLoaded", () => {
-            const menuList = [
-              "Tax_Management",
-              "E_Sevai",
-              "Water_Management",
-              "Garbage_Management",
-              "Electricity",
-              "Drainage",
-              "Disaster_Management",
-              "Others"
-            ];
-          
-            const dropdownIds = ["d1","d2","d3","d4","d5","d6","d7","d8"];
-            const prevBtn = document.getElementById("prevBtn");
-            const nextBtn = document.getElementById("nextBtn");
-          
-            function getCurrentIndex() {
-              const hash = window.location.hash.substring(1);
-              const idx = menuList.indexOf(hash === "" ? menuList[0] : hash);
-              return idx === -1 ? 0 : idx;
-            }
-          
-            // Instead of clicking the <a>, trigger the function behind it
-            function triggerDropdown(index) {
-              const dropdownId = dropdownIds[index];
-              const li = document.querySelector(`#${dropdownId}`).closest("li");
-              if(li && typeof li.onclick === "function") {
-                li.onclick(); // call the onclick function (MobileShowList)
-              }
-            }
-          
-            function scrollToSection(sectionId) {
-              const section = document.getElementById(sectionId);
-              if(section) section.scrollIntoView({ behavior: "smooth" });
-            }
-          
-            function updateButtons() {
-              const idx = getCurrentIndex();
-          
-              // Prev button
-              if(idx > 0) {
-                prevBtn.style.display = "inline-block";
-                prevBtn.onclick = (e) => {
-                  e.preventDefault();
-                  const targetIndex = idx - 1;
-                  const targetId = menuList[targetIndex];
-                  scrollToSection(targetId);
-                  setTimeout(() => {
-                    window.location.hash = targetId;
-                    triggerDropdown(targetIndex);
-                  }, 300);
-                };
-              } else {
-                prevBtn.style.display = "none";
-              }
-          
-              // Next button
-              if(idx < menuList.length - 1) {
-                nextBtn.style.display = "inline-block";
-                nextBtn.onclick = (e) => {
-                  e.preventDefault();
-                  const targetIndex = idx + 1;
-                  const targetId = menuList[targetIndex];
-                  scrollToSection(targetId);
-                  setTimeout(() => {
-                    window.location.hash = targetId;
-                    triggerDropdown(targetIndex);
-                  }, 300);
-                };
-              } else {
-                nextBtn.style.display = "none";
-              }
-            }
-          
-            // Initialize
-            if(!window.location.hash) window.location.hash = menuList[0];
-            updateButtons();
-          
-            window.addEventListener("hashchange", () => {
-              const idx = getCurrentIndex();
-              scrollToSection(menuList[idx]);
-              triggerDropdown(idx);
-              updateButtons();
-            });
-          });
-          </script>
-             
+            
+
         <!-- water management -->
         <div id="Water_Management" class="content hidden rounded-xl p-6 w-full max-w-full mx-auto">
             <h1 class="text-2xl sm:text-3xl text-amber-600 mb-8 text-center" data-aos="animate-fade-in">WATER MANAGEMENT</h1>
@@ -3094,6 +2981,10 @@ function updateCarousel() {
                     </svg>
                     <h6 class="text-lg sm:text-xl">Water Chlorination</h6>
                 </button>
+            </div>
+            <div style="position: fixed; bottom: 0px; right: 20px; display: flex; gap: 15px;">
+              <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('E_Sevai',this)">Prev</a>
+              <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Garbage_Management',this)">Next</a>
             </div>
             
             <div id="OHTWaterProcess" class="hidden transition-all duration-500">
@@ -3787,8 +3678,8 @@ function updateCarousel() {
                           <p class="text-gray-950 text-lg sm:text-xl">Continuous monitoring and adjustment without manual intervention</p>
                       </div>
                   </div>
-              </div>
-              </div>
+                </div>
+            </div>
             <div id="imageWaterContainer" class="place-items-center grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
               <!-- Images will be displayed here dynamically -->
 
@@ -3991,8 +3882,14 @@ function updateCarousel() {
                   <span class="text-white ">Composting</span>
               </div>
           </div>
+          <div style="position: fixed; bottom: 4px; right: 20px; display: flex; gap: 15px;padding: 5cap;">
+            <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Water_Management',this)">Prev</a>
+            <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Electricity',this)">Next</a>
+          </div>
         </div>
       </div>
+      
+      
         </div>
         <!-- Electricity -->
         <div id="Electricity" class="content hidden rounded-xl p-6 w-full max-w-full mx-auto">
@@ -4151,6 +4048,10 @@ function updateCarousel() {
                     </div>
                 </div>
             </section>
+            <div style="position: fixed; bottom: 4px; right: 20px; display: flex; gap: 15px;padding: 5cap;">
+              <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Garbage_Management',this)">Prev</a>
+              <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Drainage',this)">Next</a>
+            </div>
         </div>
       </div>
 
@@ -4336,6 +4237,10 @@ function updateCarousel() {
                     </div>
                 </div>
             </section>
+            <div style="position: fixed; bottom: 4px; right: 20px; display: flex; gap: 15px;padding: 5cap;">
+              <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Drainage',this)">Prev</a>
+              <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Disaster_Management',this)">Next</a>
+            </div>
         </div>
         </div>
   
@@ -4635,6 +4540,10 @@ function updateCarousel() {
                     </svg>
                     <h6 class="text-lg sm:text-xl text-amber-500 hover:text-amber-800">FIRE & SAFETY</h6>
                 </button>
+                <div style="position: fixed; bottom: 4px; right: 20px; display: flex; gap: 15px;padding: 5cap;">
+                  <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Drainage',this)">Prev</a>
+                  <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Others',this)">Next</a>
+                </div>
             </div>
             
             <div id="imageDisasterContainer" class="place-items-center grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
@@ -4848,6 +4757,11 @@ function updateCarousel() {
                       </div>
                   </div>
               </div>
+              
+          </div>
+          <div style="position: fixed; bottom: 8px; right: 20px; display: flex; gap: 15px;">
+            <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Drainage',this)">Prev</a>
+            <!-- <a style="background-color: orange; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" onclick="showList('Disaster_Management',this)">Next</a> -->
           </div>
           </section>
  
