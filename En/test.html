@@ -1,517 +1,273 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Municipal Services Navigation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            color: #2d3748;
-            line-height: 1.6;
-            padding-bottom: 100px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-        }
-        
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .description {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-        
-        .content-sections {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            margin-bottom: 100px;
-        }
-        
-        .section {
-            background: white;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            scroll-margin-top: 100px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .section h2 {
-            color: #2d3748;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .section h2 i {
-            color: #4a6fc0;
-        }
-        
-        .section p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
-        }
-        
-        .feature {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #4a6fc0;
-            transition: transform 0.3s ease;
-        }
-        
-        .feature:hover {
-            transform: translateY(-3px);
-        }
-        
-        .feature h3 {
-            margin-bottom: 12px;
-            color: #2d3748;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .feature h3 i {
-            color: #fdbb2d;
-        }
-        
-        .navigation-container {
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .navigation {
-            display: flex;
-            gap: 20px;
-            background: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            align-items: center;
-        }
-        
-        .nav-btn {
-            background: #ff8c00;
-            color: white;
-            border: none;
-            padding: 14px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-        
-        .nav-btn:hover {
-            background: #ff7700;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .nav-btn:active {
-            transform: translateY(1px);
-        }
-        
-        .nav-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        .menu-indicator {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #2d3748;
-            min-width: 220px;
-            text-align: center;
-            padding: 0 15px;
-        }
-        
-        .current-service {
-            color: #4a6fc0;
-            font-weight: 800;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 60px;
-            color: #718096;
-            font-size: 1rem;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        @media (max-width: 768px) {
-            .navigation {
-                flex-direction: column;
-                gap: 15px;
-                border-radius: 20px;
-                padding: 20px;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .description {
-                font-size: 1rem;
-            }
-            
-            .section {
-                padding: 25px;
-            }
-        }
-        
-        .progress-bar {
-            height: 6px;
-            background: #e2e8f0;
-            border-radius: 3px;
-            margin-top: 15px;
-            overflow: hidden;
-        }
-        
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #4a6fc0, #fdbb2d);
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-city"></i> Municipal Services Portal</h1>
-            <p class="description">Access all municipal services in one place. Navigate through different sections using the buttons below.</p>
-        </header>
-        
-        <div class="content-sections">
-            <section id="Tax_Management" class="section">
-                <h2><i class="fas fa-receipt"></i> Tax Management</h2>
-                <p>Manage your property taxes, business taxes, and other municipal taxes online. View your tax history, make payments, and download receipts.</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 12.5%"></div>
-                </div>
-                <div class="features">
-                    <div class="feature">
-                        <h3><i class="fas fa-home"></i> Property Tax</h3>
-                        <p>Pay your property taxes online and view payment history.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-building"></i> Business Tax</h3>
-                        <p>Manage business tax accounts and make payments.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-file-certificate"></i> Tax Certificates</h3>
-                        <p>Download tax certificates and payment receipts.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="E_Sevai" class="section">
-                <h2><i class="fas fa-laptop"></i> E-Sevai (Online Services)</h2>
-                <p>Access various municipal services online without visiting the office. Apply for certificates, licenses, and submit requests.</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 25%"></div>
-                </div>
-                <div class="features">
-                    <div class="feature">
-                        <h3><i class="fas fa-certificate"></i> Certificates</h3>
-                        <p>Apply for birth, death, and residence certificates.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-id-card"></i> Licenses</h3>
-                        <p>Apply for business licenses and permits.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-tasks"></i> Online Applications</h3>
-                        <p>Submit various applications online.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="Water_Management" class="section">
-                <h2><i class="fas fa-tint"></i> Water Management</h2>
-                <p>Manage your water connections, view bills, make payments, and submit complaints related to water supply.</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 37.5%"></div>
-                </div>
-                <div class="features">
-                    <div class="feature">
-                        <h3><i class="fas fa-file-invoice-dollar"></i> Water Bills</h3>
-                        <p>View and pay your water bills online.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-plus-circle"></i> New Connection</h3>
-                        <p>Apply for new water connection.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-exclamation-circle"></i> Complaints</h3>
-                        <p>Register complaints regarding water supply.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="Garbage_Management" class="section">
-                <h2><i class="fas fa-trash-alt"></i> Garbage Management</h2>
-                <p>Manage garbage collection services, submit complaints, and learn about waste segregation practices.</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 50%"></div>
-                </div>
-                <div class="features">
-                    <div class="feature">
-                        <h3><i class="fas fa-calendar-alt"></i> Collection Schedule</h3>
-                        <p>View garbage collection schedule for your area.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-comment-alt"></i> Complaints</h3>
-                        <p>Register complaints about garbage collection.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-recycle"></i> Waste Segregation</h3>
-                        <p>Learn about proper waste segregation practices.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="Electricity" class="section">
-                <h2><i class="fas fa-bolt"></i> Electricity Services</h2>
-                <p>Manage your electricity connections, view bills, make payments, and report power outages.</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 62.5%"></div>
-                </div>
-                <div class="features">
-                    <div class="feature">
-                        <h3><i class="fas fa-file-invoice"></i> Electricity Bills</h3>
-                        <p>View and pay your electricity bills online.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-plug"></i> Power Outages</h3>
-                        <p>Report power outages and view status.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-plus"></i> New Connection</h3>
-                        <p>Apply for new electricity connection.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="Drainage" class="section">
-                <h2><i class="fas fa-water"></i> Drainage System</h2>
-                <p>Manage drainage-related issues, report problems, and view drainage maps of your area.</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 75%"></div>
-                </div>
-                <div class="features">
-                    <div class="feature">
-                        <h3><i class="fas fa-exclamation-triangle"></i> Drainage Complaints</h3>
-                        <p>Report blocked or damaged drains.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-map"></i> Drainage Maps</h3>
-                        <p>View drainage maps of your locality.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-tools"></i> Maintenance</h3>
-                        <p>Schedule drainage maintenance.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="Disaster_Management" class="section">
-                <h2><i class="fas fa-hands-helping"></i> Disaster Management</h2>
-                <p>Access disaster preparedness resources, emergency contacts, and report emergency situations.</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 87.5%"></div>
-                </div>
-                <div class="features">
-                    <div class="feature">
-                        <h3><i class="fas fa-phone-alt"></i> Emergency Contacts</h3>
-                        <p>Important emergency contact numbers.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-first-aid"></i> Disaster Preparedness</h3>
-                        <p>Resources for disaster preparedness.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-exclamation"></i> Report Emergency</h3>
-                        <p>Report emergency situations.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="Others" class="section">
-                <h2><i class="fas fa-ellipsis-h"></i> Other Services</h2>
-                <p>Access other municipal services not covered in the main categories.</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 100%"></div>
-                </div>
-                <div class="features">
-                    <div class="feature">
-                        <h3><i class="fas fa-parking"></i> Parking</h3>
-                        <p>Information about parking facilities and permits.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-hard-hat"></i> Public Works</h3>
-                        <p>Information about public works projects.</p>
-                    </div>
-                    <div class="feature">
-                        <h3><i class="fas fa-hands"></i> Community Services</h3>
-                        <p>Access to community services and programs.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-        
-        <footer>
-            <p>© 2023 Municipal Services Portal. All rights reserved.</p>
-        </footer>
-    </div>
 
-    <div class="navigation-container">
-        <div class="navigation">
-            <button id="prevBtn" class="nav-btn">
-                <i class="fas fa-arrow-left"></i> Previous
-            </button>
-            <div class="menu-indicator">
-                Service: <span class="current-service" id="currentService">Tax Management</span>
+
+<section id="Achievements" class="content hidden mt-12 bg-white">
+    <div class="max-w-[80vw] mx-auto px-4 py-8">
+        <!-- Hero div -->
+        <header class="relative bg-gradient-to-r from-amber-500 to-amber-700 rounded-2xl p-8 mb-10 text-white overflow-hidden">
+            <div class="hidden lg:block md:block ribbon">
+                <span class="ribbon-content">BEST ADMINISTRATION AWARD</span>
             </div>
-            <button id="nextBtn" class="nav-btn">
-                Next <i class="fas fa-arrow-right"></i>
-            </button>
+            <div class="relative z-10">
+                <h1 class="text-3xl sm:text-4xl  mb-4">OUR ACHIEVEMENTS!</h1>
+                <p class="text-lg sm:text-xl  mb-6">Celebrating excellence in governance and community development</p>
+                <div class="flex flex-wrap gap-3 mb-6">
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-white text-lg sm:text-xl ">Innovative Governance</span>
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-white text-lg sm:text-xl ">Community Development</span>
+                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-white text-lg sm:text-xl ">Citizen Welfare</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Administration div -->
+        <div class="mb-12">
+            <h2 class="text-xl sm:text-2xl  text-amber-900 mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                Administration
+            </h2>
+            <div class="bg-white rounded-xl p-6 shadow-md mb-6">
+                <p class="text-lg sm:text-xl text-gray-950 mb-6">Kovalam Panchayat has implemented a Volunteer-based System for Managing Public Queries and Concerns.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl sm:text-2xl   text-amber-900 mb-4">Key Features:</h3>
+                        <ul class="space-y-3 text-lg sm:text-xl ">
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Volunteer-based System: Trained volunteers are part of the query management team.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Query Management: A systematic process is in place to collect, track, and resolve public queries and concerns.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Multi-channel Reporting: Citizens can report issues through various channels (e.g., phone, email, in-person).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Issue Tracking: Queries are tracked and monitored to ensure timely resolution.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="/assets/images/awards/6235471922091639859.jpg" alt="Administration team" class="rounded-lg w-full h-auto shadow">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Award div -->
+            <div class="bg-amber-50 rounded-xl p-6 border border-amber-200">
+                <h3 class="text-xl sm:text-2xl  text-amber-900 mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    BEST ADMINISTRATION AWARD!
+                </h3>
+                <p class="text-lg sm:text-xl text-gray-950 mb-4">Kovalam Panchayat has been conferred with the prestigious "Best Administration Award" by the Collector for two consecutive years: 2022-2023 and 2024-2025.</p>
+                <p class="text-lg sm:text-xl text-gray-950">This recognition is a testament to the Panchayat's dedication to innovative governance, community development, and citizen welfare.</p>
+            </div>
         </div>
+
+        <!-- Child Friendly Initiatives -->
+        <div class="mb-12">
+            <h2 class="text-xl sm:text-2xl  text-amber-900 mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                CHILD FRIENDLY INITIATIVES
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl sm:text-2xl  text-amber-900 mb-3">Balar Sabha Tour</h3>
+                    <p class="text-lg sm:text-xl text-gray-950 mb-4">With collaboration of STS Foundation, organised a tour for underprivileged students promoting education and exploration.</p>
+                    <img src="/assets\images\awards\C1.jpg" alt="Student tour" class="rounded-lg w-full h-auto">
+                    <img src="/assets\images\awards\C6.jpg" alt="Student tour" class="rounded-lg mt-2 w-full h-auto">
+                </div>
+                <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl sm:text-2xl  text-amber-900 mb-3">Distribution of Essential Items</h3>
+                    <p class="text-lg sm:text-xl text-gray-950 mb-4">Collaborated with STS Foundation, provided school bags, lunch bags, and education stationery to students, supporting their education journey.</p>
+                    <img src="/assets\images\awards\C2.jpg" alt="School supplies distribution" class="rounded-lg w-full h-auto">
+                </div>
+            </div>
+        </div>
+
+        <!-- Women Empowerment -->
+        <div class="mb-12">
+            <h2 class="text-xl sm:text-2xl  text-amber-900 mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                WOMEN EMPOWERMENT
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl sm:text-2xl  text-amber-900 mb-3">Motivating Self-Help Groups</h3>
+                    <p class="text-lg sm:text-xl text-gray-950">Encouraged and supported Self Help Groups (SHGs) and PLF members.</p>
+                </div>
+                <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl sm:text-2xl  text-amber-900 mb-3">Women's Day Celebration</h3>
+                    <p class="text-lg sm:text-xl text-gray-950">Organized Women's day events, including games and activities, and recognized women's achievements with gifts.</p>
+                </div>
+                <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl sm:text-2xl  text-amber-900 mb-3">Community Engagement</h3>
+                    <p class="text-lg sm:text-xl text-gray-950">Promoted Community events like Valaiyapam (Seemantham) and provided millets to women, fostering social bonding and nutrition.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- E-Governance -->
+        <div class="mb-12">
+            <h2 class="text-xl sm:text-2xl  text-amber-900 mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                </svg>
+                E-GOVERNANCE
+            </h2>
+            <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                <p class="text-lg sm:text-xl text-gray-950">Kovalam Panchayat has implemented various e-governance initiatives to enhance transparency, efficiency, and citizen engagement.</p>
+            </div>
+        </div>
+
+        <!-- Learning Centers -->
+        <div class="mb-12">
+            <h2 class="text-xl sm:text-2xl  text-amber-900 mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                </svg>
+                PANCHAYAT LEARNING CENTRES & SRD VISIT
+            </h2>
+            <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                <p class="text-lg sm:text-xl text-gray-950">Established a Learning Centre to enhance the capacity of Panchayat officials and through SIRD Visit, facilitated a visit from the State Institute of Rural Development to promote knowledge sharing and best practices.</p>
+            </div>
+        </div>
+
+        <!-- Electricity Substation -->
+        <div class="mb-12">
+            <h2 class="text-xl sm:text-2xl  text-amber-900 mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                ELECTRICITY SUBSTATION
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                    w<p class="text-lg sm:text-xl text-gray-950 mb-4">Kovalam Panchayat has identified a site for a new electricity substation, aiming to enhance power supply reliability and meet growing demand.</p>
+                    <p class="text-lg sm:text-xl text-gray-950">The electrical substation project in Kovalam will significantly improve power supply reliability, support economic growth, and enhance the overall quality of life for the community.</p>
+                </div>
+                <div class="flex gap-4">
+                  <img src="/assets/images/others/electrical-substation.jpg" alt="Electricity substation" class="flex-1 rounded-lg max-h-64 object-cover shadow">
+                  <img src="https://electricalacademia.com/wp-content/uploads/2018/08/electrical-substation-1-1.webp" alt="Electricity substation" class="flex-1 rounded-lg max-h-64 object-cover shadow" style="width: 30px;">
+              </div>                    
+            </div>
+        </div>
+
+        <!-- Water Reservoir -->
+        <div class="mb-12">
+            <h2 class="text-xl sm:text-2xl  text-amber-900 mb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                </svg>
+                WATER RESERVOIR
+            </h2>
+            <div class="achievement-card bg-white p-6 rounded-xl shadow-md">
+                <h3 class="text-xl sm:text-2xl  text-amber-900 mb-4">CHENNAI'S 6th RESERVOIR TO BE BUILT IN KOVALAM</h3>
+                <p class="text-lg sm:text-xl text-gray-950 mb-4">A new reservoir will be constructed in Kovalam, Chennai to serve as the City's sixth reservoir. The project, announced by Minister Thangam Thennarasu, will be built at a cost of ₹360 Crore.</p>
+                
+                <div class="bg-amber-50 p-4 rounded-lg mb-4">
+                    <h4 class="text-xl sm:text-2xl  text-amber-900 mb-2">KEY FEATURES:</h4>
+                    <ul class="space-y-2 text-lg sm:text-xl">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Capacity: The reservoir will have a capacity of 1.6 TMC (Thousand Million Cubic feet).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Land Area: The reservoir will spread across 4375 acres of land.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Flood Water Harvesting: The reservoir will help harvest flood water, reducing the risk of flooding in the City.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-amber-50 p-4 rounded-lg">
+                    <h4 class="text-xl sm:text-2xl   text-amber-900 mb-2">Benefits:</h4>
+                    <ul class="space-y-2 text-lg sm:text-xl">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Enhanced Water Security</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Reduced Flood Risk</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Improved Water Management</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p class="text-lg sm:text-xl text-gray-950 mt-4">The construction of the new reservoir in Kovalam is expected to commence soon, providing a significant boost to Chennai's water infrastructure.</p>
+            </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="mb-12">
+            <h2 class="text-2xl  text-amber-900 mb-6 text-center">GALLERY</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-xl">
+                    <img src="/assets/images/achievements/a1.JPG" alt="Panchayat activities 1" class="w-full h-48 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-xl">
+                    <img src="/assets/images/achievements/a2.JPG" alt="Panchayat activities 2" class="w-full h-48 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-xl">
+                    <img src="/assets\images\awards\2022 award.jpg" alt="Panchayat activities 6" class="w-full h-48 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-xl">
+                  <img src="/assets/images/achievements/a3.JPG" alt="Panchayat activities 2" class="w-full h-48 object-cover hover:scale-110 transition duration-500">
+                </div>
+                <!-- <div class="bg-amber-100 rounded-xl flex items-center justify-center">
+                    <div class="text-center p-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-600 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        <p class=" text-amber-800">More Achievements</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+            <div class="bg-amber-50 text-center   rounded-lg p-4 mb-4">
+                <p class="text-amber-700">Committed to excellence in governance and community development</p>
+            </div>
+            
     </div>
 
-    <script>
-        const menuList = [
-            "Tax_Management",
-            "E_Sevai",
-            "Water_Management",
-            "Garbage_Management",
-            "Electricity",
-            "Drainage",
-            "Disaster_Management",
-            "Others"
-        ];
-
-        const menuTitles = {
-            "Tax_Management": "Tax Management",
-            "E_Sevai": "E-Sevai",
-            "Water_Management": "Water Management",
-            "Garbage_Management": "Garbage Management",
-            "Electricity": "Electricity",
-            "Drainage": "Drainage",
-            "Disaster_Management": "Disaster Management",
-            "Others": "Other Services"
-        };
-
-        let currentIndex = 0;
-        const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
-        const currentServiceElement = document.getElementById("currentService");
-        
-        // Function to update the current service indicator
-        function updateServiceIndicator() {
-            currentServiceElement.textContent = menuTitles[menuList[currentIndex]];
-        }
-        
-        // Function to scroll to a section
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-        
-        // Next button event listener
-        nextBtn.addEventListener("click", () => {
-            if (currentIndex < menuList.length - 1) {
-                currentIndex++;
-                updateServiceIndicator();
-                scrollToSection(menuList[currentIndex]);
-            }
-        });
-        
-        // Previous button event listener
-        prevBtn.addEventListener("click", () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateServiceIndicator();
-                scrollToSection(menuList[currentIndex]);
-            }
-        });
-        
-        // Initialize the service indicator
-        updateServiceIndicator();
-        
-        // Update button states
-        function updateButtonStates() {
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex === menuList.length - 1;
-        }
-        
-        // Initialize button states
-        updateButtonStates();
-    </script>
-</body>
-</html>
+</section>
