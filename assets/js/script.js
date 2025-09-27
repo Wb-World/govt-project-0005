@@ -42,6 +42,22 @@ data.forEach(({ ward, habitation, streets }, index) => {
     });
 });
 
+function sort_ward_members(mem_pos){
+    const sorted_list = [
+        'Ward 3', 'Ward 4',
+        'Ward 5', 'Ward 6',
+        'Ward 7', 'Ward 8',
+        'Ward 9'
+      ];
+    
+    for(let mems of sorted_list){
+        if(mem_pos == mems){
+            return `Ward Member (ward ${mems.split(' ')[1]})`;
+        }
+    }
+    return mem_pos;
+}
+
 function ElectedMembers(containerId, members) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -77,19 +93,20 @@ function ElectedMembers(containerId, members) {
 
         const position = document.createElement('h3');
         position.className = "text-amber-600 text-sm";
-        position.innerText = member.position;
+        // position.innerText = member.position;
+        position.innerText = sort_ward_members(member.position);
 
         textContainer.appendChild(name);
         textContainer.appendChild(position);
         profileWrapper.appendChild(textContainer);
 
         // Description container
-        const descriptionContainer = document.createElement('div');
-        descriptionContainer.className = "mt-1 p-2 justify-center bg-white rounded-lg flex-1";
+        // const descriptionContainer = document.createElement('div');
+        // descriptionContainer.className = "mt-1 p-2 justify-center bg-white rounded-lg flex-1";
 
-        const bio = document.createElement('p');
-        bio.className = "text-base sm:text-base text-gray-950";
-        bio.innerText = member.bio;
+        // const bio = document.createElement('p');
+        // bio.className = "text-base sm:text-base text-gray-950";
+        // bio.innerText = member.bio;
 
         // Social Icons
         // const socialContainer = document.createElement('div');
@@ -108,11 +125,11 @@ function ElectedMembers(containerId, members) {
         //     socialContainer.appendChild(socialLink);
         // });
 
-        descriptionContainer.appendChild(bio);
+        // descriptionContainer.appendChild(bio);
         // descriptionContainer.appendChild(socialContainer);
 
         wrapper.appendChild(profileWrapper);
-        wrapper.appendChild(descriptionContainer);
+        // wrapper.appendChild(descriptionContainer);
         container.appendChild(wrapper);
 
         // Adjust height dynamically
