@@ -66,7 +66,7 @@
             "Applicant Photo",
             "School Transfer Certificate"
         ],
-        "images": ["/assets/images/e-sevai/rc.png"],
+        "images": ["/assets/images/e-sevai/6248982738153621964.jpg"],
         "time": "10 days"
     },
     {
@@ -105,7 +105,7 @@
             "Residence Certificate",
             "Mother Sterilization Certificate"
         ],
-        "images": ["../assets/images/e-sevai/lhc.png"],
+        "images": ["../assets/images/e-sevai/6248982738153621963.jpg"],
         "time": "30 days"
     },
     {
@@ -171,7 +171,7 @@
             "Voter ID",
             "Address Proof (If the Given Residential Address is Different From Aadhar)"
         ],
-        "images": [ "/assets/images/e-sevai/dap.png"],
+        "images": [ "/assets/images/e-sevai/6248982738153621965.jpg"],
         "time": "30 days"
     },
     {
@@ -228,7 +228,7 @@
             "Change of Address In Ration Card",
             "Smart Card"
         ],
-        "images": ["/assets/images/e-sevai/pv.png"],
+        "images": ["/assets/images/e-sevai/6248982738153621979.jpg"],
         "time": "15 days"
     },
     {
@@ -264,7 +264,7 @@
             "Voter Identity Card",
             "Bank Passbook"
         ],
-        "images": [ "/assets/images/e-sevai/ac.png"],
+        "images": ["/assets/images/e-sevai/rc.png"],
         "time": "15 days"
     }
 ]
