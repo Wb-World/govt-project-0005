@@ -1,67 +1,66 @@
-/*
 const data = [
-    { ward: 1, habitation: "KUNNUKADU", streets: ["NEW MAJITH STREET", "MUTHUMARIYAMMAN KOVIL STREET", "CARMEL NAGAR"] },
-    { ward: 2, habitation: "KOVALAM KUPPAM", streets: ["BAJANAI KOVIL STREET"] },
-    { ward: 3, habitation: "KOTTAI COLONY", streets: ["MADHA KOVIL STREET", "NADU COLONY", "MUTHUMARIYAMMAN KOVIL STREET", "DESAI STREET"] },
-    { ward: 4, habitation: "KOVALAM", streets: ["KAILASANATHAR KOVIL STREET", "KOVALAM MAIN ROAD", "PILLAIYAR KOVIL STREET", "EGAVALLIAMMAN KOVIL STREET", "DARGHA STREET"] },
-    { ward: 5, habitation: "KOVALAM KUPPAM", streets: ["KANNIYAMMAN KOVIL STREET"] },
-    { ward: 6, habitation: "NACHIYAR KULAM COLONY", streets: ["VANIGAR STREET", "NACHIYAR KULAM", "SENGENIYAMMAN KOVIL STREET"] },
-    { ward: 7, habitation: "ANSARI NAGAR", streets: ["ANSARI NAGAR"] },
-    { ward: 8, habitation: "SEMMENCHERRY", streets: ["PADAVETTAMMAN KOVIL STREET"] },
-    { ward: 9, habitation: "SEMMENCHERRY KUPPAM", streets: ["NAGALAMMAN KOVIL STREET"] }
-];
-*/
-const data = [
-    { 
-        ward: 1, 
-        habitation: "Kovalam", 
-        streets: ["Kailasanathar Kovil Street", "Beach Road"] 
-    },
-    { 
-        ward: 2, 
-        habitation: "New Majith Street", 
-        streets: ["New Majith Street"] 
-    },
-    { 
-        ward: 3, 
-        habitation: "Kottai Colony", 
-        streets: ["Madha Kovil Street"] 
-    },
-    { 
-        ward: 4, 
-        habitation: "Middle Colony", 
-        streets: ["Middle Colony"] 
-    },
-    { 
-        ward: 5, 
-        habitation: "Nachiyar Kulam", 
-        streets: ["Nachiyar Kulam", "Desai Chetty Street", "Vanigar Street", "Sengeniyanman Kovil Street"] 
-    },
-    { 
-        ward: 6, 
-        habitation: "Kundrukadu", 
-        streets: ["Kundrukadu", "Carmel Nagar", "Teachers Colony"] 
-    },
-    { 
-        ward: 7, 
-        habitation: "Ansari Nagar", 
-        streets: ["Ansari Nagar", "Dharga Street", "Padavattanman Kovil Street", "Egavaillyanman Kovil Street", "Pillaiyar Kovil Street"] 
-    },
-    { 
-        ward: 8, 
-        habitation: "Semmencheri", 
-        streets: ["Semmencheri Kuppam", "Bajanai Kovil Street", "Kamiyanman Kovil Street"] 
-    },
-    { 
-        ward: 9, 
-        habitation: "Kovalam Kuppam", 
-        streets: ["Kovalam Kuppam"] 
-    },
-    { 
-        ward: 10, 
-        habitation: "Fisheries Colony", 
-        streets: ["Fisheries Colony"] 
-    }
+  {
+    ward: 1,
+    habitation: "KOVALAM",
+    streets: ["KAILASANATHAR KOVIL STREET", "BEACH ROAD"]
+  },
+  {
+    ward: 2,
+    habitation: "NEW MAJITH STREET",
+    streets: ["NEW MAJITH STREET"]
+  },
+  {
+    ward: 3,
+    habitation: "KOTTAI COLONY",
+    streets: ["MADHA KOVIL STREET"]
+  },
+  {
+    ward: 4,
+    habitation: "MIDDLE COLONY",
+    streets: ["MIDDLE COLONY"]
+  },
+  {
+    ward: 5,
+    habitation: "NACHIYAR KULAM",
+    streets: [
+      "NACHIYAR KULAM",
+      "DESAI CHETTY STREET",
+      "VANIGAR STREET",
+      "SENGENIYAMMAN KOVIL STREET"
+    ]
+  },
+  {
+    ward: 6,
+    habitation: "KUNDURUKADU",
+    streets: ["KUNDURUKADU", "CARMEL NAGAR", "TEACHERS COLONY"]
+  },
+  {
+    ward: 7,
+    habitation: "ANSARI NAGAR",
+    streets: ["ANSARI NAGAR", "DHARGA STREET"]
+  },
+  {
+    ward: 8,
+    habitation: "SEMMENCHERI",
+    streets: [
+      "PADAVATTAMMAN KOVIL STREET",
+      "EGAVAILLYAMMAN KOVIL STREET",
+      "PILLAIYAR KOVIL STREET"
+    ]
+  },
+  {
+    ward: 9,
+    habitation: "SEMMENCHERI KUPPAM",
+    streets: ["SEMMENCHERI KUPPAM"]
+  },
+  {
+    ward: 10,
+    habitation: "KOVALAM KUPPAM",
+    streets: [
+      "BAJANAI KOVIL STREET",
+      "KANNIYAMMAN KOVIL STREET"
+    ]
+  }
 ];
 const tableBody = document.getElementById("table-body");
 data.forEach(({ ward, habitation, streets }, index) => {
