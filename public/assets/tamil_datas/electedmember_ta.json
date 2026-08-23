@@ -1,0 +1,115 @@
+{
+    "members": [
+      {
+        "name": "P.அதிலட்சுமி பெருமாள்",
+        "position": "துணைத் தலைவர் (வார்டு 2)",
+        "image": "/assets/images/members/vice president.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "B.யாஸ்மின் பாஸ்கர்",
+        "position": "மன்ற உறுப்பினர்",
+        "image": "/assets/images/members/yasminBashar.png",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "A.முகமது இலியாஸ்",
+        "position": "வார்டு உறுப்பினர் (வார்டு 1)",
+        "image": "/assets/images/members/round 1  ward.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "G.சத்யா கணேஷ்",
+        "position": "வார்டு உறுப்பினர் (வார்டு 3)",
+        "image": "/assets/images/members/round 3 ward.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "V.பத்மாவதி வீரராகவன்",
+        "position": "வார்டு உறுப்பினர் (வார்டு 4)",
+        "image": "/assets/images/members/round 4 ward.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "S.தனலட்சுமி சங்கர்",
+        "position": "வார்டு உறுப்பினர் (வார்டு 5)",
+        "image": "/assets/images/members/round 5 ward.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "A.சந்திரபாபு",
+        "position": "வார்டு உறுப்பினர் (வார்டு 6)",
+        "image": "/assets/images/members/round 6 ward.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "M.பல்கிஸ் மௌலா",
+        "position": "வார்டு உறுப்பினர் (வார்டு 7)",
+        "image": "/assets/images/members/round 7 ward.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "M.தனலட்சுமி முருகன்",
+        "position": "வார்டு உறுப்பினர் (வார்டு 8)",
+        "image": "/assets/images/members/round 8 ward.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "J.சம்பத்",
+        "position": "வார்டு உறுப்பினர் (வார்டு 9)",
+        "image": "/assets/images/members/round 9 ward.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      },
+      {
+        "name": "S.மதன் ராஜ்",
+        "position": "ஊராட்சி செயலாளர் - D.A.E",
+        "image": "/assets/images/members/clerk passport.jpg",
+        "social": {
+          "twitter": "#",
+          "facebook": "#",
+          "instagram": "#"
+        }
+      }
+    ]
+  }
+  

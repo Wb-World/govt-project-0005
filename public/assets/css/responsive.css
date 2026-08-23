@@ -1,0 +1,534 @@
+/*
+ * responsive.css
+ * Mobile-responsiveness overrides for Kovalam Panchayat website.
+ * ALL rules are inside @media queries — desktop (≥1024px) is completely untouched.
+ */
+
+/* ============================================================
+   GLOBAL BASELINE — applies at all small sizes
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+iframe,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent any element from exceeding the viewport width */
+@media (max-width: 1023px) {
+
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Prevent long words/URLs from breaking layout */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  span,
+  a,
+  td,
+  th,
+  label {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Images always fluid */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+@media (max-width: 1023px) {
+
+  /* Keep header items from overflowing */
+  header {
+    flex-wrap: wrap;
+  }
+
+  header .leading-tight h1 {
+    font-size: clamp(0.9rem, 3.5vw, 1.25rem);
+    line-height: 1.2;
+  }
+
+  header .leading-tight span {
+    font-size: clamp(0.75rem, 2.8vw, 1rem);
+  }
+
+  header img[alt="Logo"] {
+    height: 3rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header .leading-tight h1 {
+    font-size: clamp(0.8rem, 4vw, 1rem);
+  }
+
+  header .leading-tight span {
+    font-size: clamp(0.65rem, 3vw, 0.875rem);
+  }
+}
+
+
+/* ============================================================
+   DESKTOP NAV SECTION (already hidden on mobile via lg:hidden)
+   Slogan decorative dividers — clamp widths
+   ============================================================ */
+@media (max-width: 1023px) {
+
+  /* Slogan bar divider lines */
+  .w-\[34vw\] {
+    width: 70vw !important;
+  }
+
+  .w-\[20vw\] {
+    width: 50vw !important;
+  }
+}
+
+
+/* ============================================================
+   HERO / BANNER SECTION
+   ============================================================ */
+@media (max-width: 1023px) {
+  /*
+   * On mobile the hero container needs to accommodate:
+   *   1. The mobile background image (background-mobile, already block lg:hidden)
+   *   2. The notifications panel (flag + independence day) — currently hidden on mobile
+   *
+   * Strategy:
+   *   - Remove fixed 70vh height so the container can grow
+   *   - Remove overflow:hidden so notifications can flow below
+   *   - Make #background-mobile a normal block with set height
+   *   - Make #notifications a normal flow element, full width, below
+   */
+
+  /* Hero wrapper */
+  div.relative.h-\[70vh\].w-full.overflow-hidden {
+    height: auto !important;
+    overflow: visible !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mobile background — give it a sensible height */
+  #background-mobile {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: 55vw !important;
+    /* keep 16:9-ish proportion */
+    min-height: 200px;
+    max-height: 400px;
+    background-size: cover !important;
+    background-position: 35% center !important;
+    flex-shrink: 0;
+  }
+
+  /* Notifications panel: show on mobile, full-width, below the background */
+  #notifications {
+    display: grid !important;
+    /* override Tailwind's hidden */
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    grid-template-rows: 220px 70px;
+    z-index: 10;
+    flex-shrink: 0;
+  }
+
+  /* Flag GIF — keep correct scaleX(-1) transform, just size it */
+  #notifications>div:first-child {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #notifications>div:first-child img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill;
+    display: block;
+    /* scaleX(-1) set via inline style — do NOT override transform here */
+  }
+
+  /* Independence Day / flagtext image */
+  #notifications>div:last-child {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #notifications>div:last-child img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill;
+    display: block;
+  }
+}
+
+/* Smaller phones — reduce flag height slightly */
+@media (max-width: 480px) {
+  #notifications {
+    grid-template-rows: 180px 60px !important;
+  }
+
+  #background-mobile {
+    height: 60vw !important;
+    max-height: 300px;
+  }
+}
+
+
+/* ============================================================
+   TAMIL / ENGLISH SLOGAN BAR
+   ============================================================ */
+@media (max-width: 1023px) {
+
+  /* Slogan bar — let height grow if text wraps */
+  .w-full.h-32.bg-gradient-to-br {
+    height: auto !important;
+    min-height: 7rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+
+/* ============================================================
+   NEWS TICKER (mobile) — already block lg:hidden, just guard overflow
+   ============================================================ */
+@media (max-width: 1023px) {
+  .ticker-content {
+    max-width: 100%;
+  }
+}
+
+
+/* ============================================================
+   MODALS (news modal, event modal)
+   ============================================================ */
+@media (max-width: 600px) {
+
+  /* News modal */
+  #newsModal>div {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    margin: 0 auto;
+  }
+
+  /* Event / certificate modal */
+  #eventModal>div {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    max-height: 92vh !important;
+    overflow-y: auto;
+  }
+
+  /* Modal content inner wrapper */
+  #modalContent {
+    width: 95vw !important;
+    max-width: 95vw !important;
+  }
+}
+
+
+/* ============================================================
+   INNER SECTION CONTAINERS WITH max-w-[80vw]
+   On small phones, 80vw is fine but combined with large padding
+   can squeeze content. Override to full width when very narrow.
+   ============================================================ */
+@media (max-width: 480px) {
+  .max-w-\[80vw\] {
+    max-width: 96vw !important;
+    width: 96vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+
+/* ============================================================
+   HOME SECTION — Elected Members grid
+   ============================================================ */
+@media (max-width: 1023px) {
+
+  /* ElectedMembers container — allow wrapping on mobile */
+  #ElectedMembers {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  /* Each member card */
+  #ElectedMembers>div {
+    width: 100% !important;
+    max-width: 400px;
+  }
+}
+
+
+/* ============================================================
+   ABOUT US — Section cards with md:flex
+   Cards with md:w-[50%] that pair image + text side-by-side
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* Force flex column on small screens for image+text pairs */
+  .md\:flex {
+    flex-direction: column !important;
+  }
+
+  /* Image half */
+  .md\:w-\[50\%\] {
+    width: 100% !important;
+  }
+
+  /* Text half padding reduction on small screens */
+  .p-8.md\:w-\[50\%\] {
+    padding: 1.25rem !important;
+    width: 100% !important;
+  }
+}
+
+
+/* ============================================================
+   SERVICES / INFRASTRUCTURE SECTIONS — map iframes
+   ============================================================ */
+@media (max-width: 1023px) {
+  iframe {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS — ribbon cards and grid
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* Achievement ribbon card — prevent overflow */
+  .ribbon {
+    width: 120px;
+    height: 120px;
+  }
+
+  .ribbon-content {
+    width: 190px;
+    font-size: 0.7rem;
+    padding: 10px 0;
+  }
+
+  /* Achievement cards */
+  #Achievements .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ============================================================
+   EVENTS — camp image grids
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* Event image grids that use cols-3 on desktop */
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ============================================================
+   FEEDBACK SECTION
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* Feedback form layout — stack columns on mobile */
+  .feedback-form-grid {
+    flex-direction: column !important;
+  }
+
+  /* Rating stars — give enough touch target size */
+  .feedback-rating-star {
+    font-size: 1.75rem !important;
+    padding: 0.2rem !important;
+  }
+
+  /* Feedback type tags — wrap */
+  .feedback-tags-container {
+    flex-wrap: wrap !important;
+  }
+
+  /* Carousel nav buttons — keep accessible */
+  .feedback-carousel-nav {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+}
+
+
+/* ============================================================
+   CONTACT US SECTION
+   ============================================================ */
+@media (max-width: 1023px) {
+
+  /* lg:flex → stack on mobile */
+  #Contactus .lg\:flex {
+    flex-direction: column !important;
+  }
+
+  #Contactus .lg\:w-1\/2 {
+    width: 100% !important;
+  }
+}
+
+
+/* ============================================================
+   WATER MANAGEMENT — table overflow
+   ============================================================ */
+@media (max-width: 767px) {
+
+  #Water_Management table,
+  #Tax_Management table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+}
+
+
+/* ============================================================
+   ABOUT US MAP / DEMOGRAPHICS
+   ============================================================ */
+@media (max-width: 1023px) {
+
+  /* Any inline fixed-height containers for maps */
+  .demographics-map,
+  [style*="height: 400px"],
+  [style*="height: 500px"] {
+    height: auto !important;
+    min-height: 250px;
+  }
+}
+
+
+/* ============================================================
+   SWIPER / GALLERY CAROUSELS
+   ============================================================ */
+@media (max-width: 767px) {
+  .swiper-container {
+    width: 100% !important;
+  }
+
+  .swiper-slide img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+
+/* ============================================================
+   MOBILE MENU DRAWER — guard for very narrow screens
+   ============================================================ */
+@media (max-width: 360px) {
+  #mobileMenu {
+    width: 85vw !important;
+  }
+}
+
+
+/* ============================================================
+   SCROLL-TO-TOP BUTTON — keep accessible on small screens
+   ============================================================ */
+@media (max-width: 480px) {
+  #scrollUpBtn {
+    bottom: 1rem !important;
+    right: 1rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    font-size: 1rem !important;
+  }
+}
+
+
+/* ============================================================
+   GENERAL TEXT SIZE GUARD for very small screens
+   ============================================================ */
+@media (max-width: 360px) {
+
+  h1,
+  h2,
+  h3 {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  p,
+  li,
+  span,
+  label {
+    font-size: clamp(0.875rem, 3.5vw, 1rem);
+  }
+}
+
+
+/* ============================================================
+   DESKTOP GUARD — ensure nothing here leaks to desktop
+   Everything above is already inside max-width queries.
+   Extra safeguard below for desktop-only resets.
+   ============================================================ */
+@media (min-width: 1024px) {
+
+  /* Re-affirm the hero container properties on desktop */
+  div.relative.h-\[70vh\].w-full.overflow-hidden {
+    height: 70vh !important;
+    overflow: hidden !important;
+    display: block !important;
+  }
+
+  #background-mobile {
+    position: absolute !important;
+  }
+
+  #notifications {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 30% !important;
+    height: 100% !important;
+    display: grid !important;
+    grid-template-rows: 75% 25% !important;
+  }
+}

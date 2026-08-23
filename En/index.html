@@ -18,19 +18,15 @@
     <link rel="stylesheet" href="/assets/css/feedback.css">
     <link rel="stylesheet" href="/assets/css/font-family.css">
 
-    <!-- Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/e69c07ce09.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <script src="/assets/js/feedback.js"></script>
-    <!-- AOS Library -->
+    <!-- Animation Libraries (deduplicated — AOS loaded once, scripts deferred) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/e69c07ce09.js" crossorigin="anonymous" defer></script>
 
     <style>
         body {
@@ -42,6 +38,50 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: "Lato", sans-serif;
             font-weight: 900 !important; /* Forces override of any utility classes */
+        }
+
+        /* === FOUC Prevention ===
+           Tailwind CDN is a runtime script that scans the DOM after loading.
+           Before it finishes, its utility classes (fixed, inset-0, z-50, etc.) have
+           no effect. This CSS-only rule ensures the loading screen covers the full
+           viewport from the very first browser paint, independent of Tailwind. */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8fafc; /* matches bg-slate-50 */
+            z-index: 9999;
+        }
+
+        /* Fix: constrain the logo to a fixed size so it never renders
+           at its full native SVG size before Tailwind CDN loads. */
+        #loading-screen img {
+            width: 8rem;
+            height: 8rem;
+            display: block;
+        }
+
+        /* Fix: keep loading text readable */
+        #loading-screen p {
+            margin-top: 3rem;
+            font-size: 1rem;
+            color: #111827;
+        }
+
+        /* Keep main content invisible until JS explicitly reveals it */
+        #main-content {
+            display: none;
+        }
+
+        /* Fix: hide Swiper nav/pagination buttons while content is hidden
+           so they can't bleed through the loading screen. */
+        #main-content .swiper-button-next,
+        #main-content .swiper-button-prev,
+        #main-content .swiper-pagination {
+            display: none;
         }
     </style>
 </head>
@@ -471,45 +511,25 @@
           <div class="relative h-[70vh] w-full overflow-hidden bg-gradient-to-r from-amber-100 to-white">
             <!-- Background Image for Desktop -->
             <div id="background-desktop" class="absolute inset-0 w-full h-full hidden lg:block bg-move bg-cover" 
-                 style="background-image: url('/assets/images/photo_6339331154796201764_y.jpg');">
-            </div>
+                 style="background-image: url('/assets/images/photo_6339331154796201764_y.jpg');"></div>
                  
             <!-- Background Image for Mobile -->
-            <!-- <div id="background-mobile"
-                class="absolute inset-0 w-full h-full bg-cover bg-center block lg:hidden"
-                style="background-image: url('/assets/images/IMG_20250722_154846.jpg'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
-            </div> -->
             <div id="background-mobile"
                 class="absolute inset-0 w-full h-full bg-cover bg-center block lg:hidden"
                 style="background-image: url('/assets/images/IMG_20250722_154846.jpg'); background-position: 35% center; background-repeat: no-repeat; background-size: cover;">
             </div>
 
 
-            <div id="notifications" 
-                 class="absolute top-24 right-4 w-[80vw] max-w-[calc(50vw-2rem)] lg:w-[30vw] text-black p-6 rounded-2xl transition-all duration-300 
-                        flex flex-col hidden lg:block backdrop-blur-sm border-4 border-amber-300" style="margin-top: 5cap;">
-              <div class="relative z-10 flex items-start">
-                <div class="flex-1">
-                  <h3 class="text-3xl md:text-2xl text-amber-800 mb-1 flex items-center">
-                  </h3>
-                  <p class="text-gray-950 mb-2 text-xl text-orange-600">
-                    <b>
-                    🎉 Happy Aayutha Poojai 2025! 🎊
-🌸 Aayutha Poojai Nalvazhthukkal!
+            <img src="/assets/images/photo_6339331154796201764_y.jpg"
+                 alt="Kovalam Panchayat President"
+                 class="absolute top-0 left-0 hidden lg:block h-full object-cover object-center"
+                 style="width: 95%;">
 
-Wishing you and your family happiness, good health, and prosperity.
-May this sacred day bless all your efforts, bring success in your work, and fill your life with peace, harmony, and joy throughout the year!
-                    </b>
-                  </p>
-          
-                  <div class="flex items-center my-3">
-                    <div class="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
-                    <div class="mx-2 text-amber-500">✨</div>
-                    <div class="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img id="notifications"
+                 src="https://cdn.cdnparenting.com/articles/2024/07/20112820/indian-independence-day-gif.gif"
+                 alt="Happy 15th August"
+                 class="absolute top-0 right-0 hidden lg:block h-full object-fill bg-white transition-all duration-300"
+                 style="background-color: white; width: 40%;">
           </div>
 
           <!-- Tamil Slogan Section (with animation, visible on all devices, placed under image) -->
@@ -719,56 +739,8 @@ May this sacred day bless all your efforts, bring success in your work, and fill
         };
     });
 </script>
-        <script>
-
-            new Swiper(".swiper-container", {
-            loop: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                dynamicBullets: true,
-            },
-            slidesPerView: 1,
-            spaceBetween: 20,
-            breakpoints: {
-                640: { slidesPerView: 1 },
-                1024: { slidesPerView: 3 },
-            },
-        });
-        </script>       
- <script>
-
-  new Swiper(".swiper-container", {
-  loop: true,
-  autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-  },
-  navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-  },
-  pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      dynamicBullets: true,
-  },
-  slidesPerView: 1,
-  spaceBetween: 20,
-  breakpoints: {
-      640: { slidesPerView: 1 },
-      1024: { slidesPerView: 3 },
-  },
-});
-</script>       
+        <!-- Swiper is initialized inside window.load (after swiper-bundle.min.js defer loads)
+             Inline scripts here would fail with "Swiper is not defined" since the library is defer-loaded. -->       
 <script>
     // Global variables
     let certificatesData = [];
@@ -7521,6 +7493,16 @@ function updateCarousel() {
                     </svg>
                   </button>
                 </div>
+
+                <!-- Users Feedback Button (centered below form) -->
+                <div class="mt-6 flex justify-center">
+                  <a href="/users-feedback" class="users-feedback-btn text-lg sm:text-xl bg-gradient-to-r from-amber-400 to-amber-500 text-white py-3 px-8 rounded-full shadow-lg hover:shadow-amber-400/40 transition-all duration-300 transform hover:scale-110 inline-flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                    </svg>
+                    Users Feedback
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -7684,13 +7666,36 @@ function updateCarousel() {
         });
 
         window.addEventListener("load", function() {
-            // Fade out loading screen
-            gsap.to("#loading-screen", { opacity: 0, duration: 0.5, onComplete: function() {
-                document.getElementById("loading-screen").style.display = "none";
-                document.getElementById("main-content").classList.remove("hidden");
+            function revealApp() {
+                var loadingScreen = document.getElementById("loading-screen");
+                var mainContent = document.getElementById("main-content");
+
+                // Reveal main content first so layout is established before animation
+                loadingScreen.style.display = "none";
+                mainContent.style.display = "block";
+
+                // Un-hide Swiper nav buttons that were suppressed during loading
+                document.querySelectorAll(".swiper-button-next, .swiper-button-prev, .swiper-pagination").forEach(function(el) {
+                    el.style.display = "";
+                });
+
+                // Initialize Swiper here — swiper-bundle.min.js is defer-loaded so it is
+                // guaranteed to be available at window.load time. Initializing before this
+                // point caused "Swiper is not defined" errors and broken nav buttons.
+                if (typeof Swiper !== "undefined") {
+                    new Swiper(".swiper-container", {
+                        loop: true,
+                        autoplay: { delay: 2500, disableOnInteraction: false },
+                        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+                        pagination: { el: ".swiper-pagination", clickable: true, dynamicBullets: true },
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                        breakpoints: { 640: { slidesPerView: 1 }, 1024: { slidesPerView: 3 } },
+                    });
+                }
 
                 // Reinitialize AOS after revealing content
-                AOS.refreshHard(); 
+                if (typeof AOS !== "undefined") { AOS.refreshHard(); }
 
                 // Animate background movement
                 gsap.to("#background-desktop", { x: "0%", opacity: 1, duration: 1.5, ease: "power2.out" });
@@ -7705,7 +7710,15 @@ function updateCarousel() {
                             duration: 0.75, // Smooth effect
                             ease: "power2.out" 
                 });
-            }});
+            }
+
+            // Fade out loading screen, then reveal app.
+            // Falls back to immediate reveal if GSAP is not available.
+            if (typeof gsap !== "undefined") {
+                gsap.to("#loading-screen", { opacity: 0, duration: 0.5, onComplete: revealApp });
+            } else {
+                revealApp();
+            }
         });
 
         let scrollUpBtn = document.createElement("button");

@@ -1,0 +1,114 @@
+{
+  "members": [
+    {
+      "name": "P.ADHILAKSHMI PERUMAL",
+      "position": "VICE PRESIDENT ( WARD 2 )",
+      "image": "/assets/images/members/vice president.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "B.YASMIN BASKAR",
+      "position": "COUNCILLOR",
+      "image": "/assets/images/members/yasminBashar.png",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "A.MOHAMMED ILIYAS",
+      "position": "Ward Member(Ward 1)",
+      "image": "/assets/images/members/round 1  ward.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "G. SATHYA GANESH",
+      "position": "Ward 3",
+      "image": "/assets/images/members/round 3 ward.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "V.PADMAVATHI VEERARAGAVAN",
+      "position": "Ward 4",
+      "image": "/assets/images/members/round 4 ward.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "S.DHANALAKSHMI SANKAR",
+      "position": "Ward 5",
+      "image": "/assets/images/members/round 5 ward.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "A.CHANDRABABU",
+      "position": "Ward 6",
+      "image": "/assets/images/members/round 6 ward.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "M.BALKIS MOULA",
+      "position": "Ward 7",
+      "image": "/assets/images/members/round 7 ward.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "M.DHANALAKSHMI MURUGAN",
+      "position": "Ward 8",
+      "image": "/assets/images/members/round 8 ward.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "J.SAMPATH",
+      "position": "Ward 9",
+      "image": "/assets/images/members/round 9 ward.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "name": "S.MADHAN RAJ",
+      "position": "PANCHAYAT SECRETARY",
+      "image": "/assets/images/members/clerk passport.jpg",
+      "social": {
+        "twitter": "#",
+        "facebook": "#",
+        "instagram": "#"
+      }
+    }
+  ]
+}
