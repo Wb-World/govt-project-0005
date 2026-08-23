@@ -458,11 +458,11 @@ export default function EnglishPage() {
                 will-change: transform;
               }
 
-              /* --- HAPPY: saffron, uppercase, wide tracking, large bold --- */
+              /* --- HAPPY: saffron, cursive signature font --- */
               .indep-happy {
-                font-family: 'Great Vibes', cursive;
+                font-family: 'Great Vibes', cursive !important;
                 font-weight: 400;
-                font-size: clamp(1rem, 2vw, 1.6rem);
+                font-size: clamp(1.2rem, 2.2vw, 1.8rem);
                 color: #FF9933;
                 letter-spacing: 0.02em;
                 display: block;
@@ -472,11 +472,11 @@ export default function EnglishPage() {
                            indep-glow-saffron 2.8s ease-in-out 0.55s infinite;
               }
 
-              /* --- INDEPENDENCE: navy shimmer sweep, largest word --- */
+              /* --- INDEPENDENCE: navy shimmer sweep, signature font --- */
               .indep-main {
-                font-family: 'Great Vibes', cursive;
+                font-family: 'Great Vibes', cursive !important;
                 font-weight: 400;
-                font-size: clamp(1.3rem, 2.8vw, 2.2rem);
+                font-size: clamp(1.6rem, 3.2vw, 2.6rem);
                 letter-spacing: 0.02em;
                 display: block;
                 line-height: 1.2;
@@ -499,11 +499,11 @@ export default function EnglishPage() {
                 filter: drop-shadow(0 3px 6px rgba(26,35,126,0.25));
               }
 
-              /* --- DAY: green, wide tracking, bold --- */
+              /* --- DAY: green, cursive signature font --- */
               .indep-day {
-                font-family: 'Great Vibes', cursive;
+                font-family: 'Great Vibes', cursive !important;
                 font-weight: 400;
-                font-size: clamp(1rem, 2vw, 1.6rem);
+                font-size: clamp(1.2rem, 2.2vw, 1.8rem);
                 color: #138808;
                 letter-spacing: 0.02em;
                 display: block;
@@ -517,9 +517,9 @@ export default function EnglishPage() {
               className="indep-container"
               style={{ flex: "0 0 35%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "transparent", overflow: "visible", minHeight: 0, padding: "4px 8px", textAlign: "center", gap: "2px" }}
             >
-              <span className="indep-happy lato-black">Happy</span>
-              <span className="indep-main lato-black">Independence</span>
-              <span className="indep-day lato-black">Day</span>
+              <span className="indep-happy">Happy</span>
+              <span className="indep-main">Independence</span>
+              <span className="indep-day">Day</span>
             </div>
 
           </div>
