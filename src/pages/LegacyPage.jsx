@@ -92,7 +92,7 @@ function fixTamilDesktopNav(root, language) {
 function rewriteFeedbackLinks(root, language, navigate) {
   root.querySelectorAll('a[href="#Feedback"], [onclick*="Feedback"]').forEach((element) => {
     if (element.tagName === 'A') {
-      element.setAttribute('href', `/${language}/Feedback`);
+      element.setAttribute('href', `/${language}/feedback`);
     }
     element.addEventListener(
       'click',
@@ -105,20 +105,7 @@ function rewriteFeedbackLinks(root, language, navigate) {
         const overlay = root.querySelector('#overlay');
         if (overlay) overlay.classList.add('hidden');
 
-        navigate(`/${language}/Feedback`);
-      },
-      true,
-    );
-  });
-
-  // Intercept the Users Feedback button link for SPA navigation
-  root.querySelectorAll('a[href="/users-feedback"]').forEach((element) => {
-    element.addEventListener(
-      'click',
-      (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        navigate('/users-feedback');
+        navigate(`/${language}/feedback`);
       },
       true,
     );

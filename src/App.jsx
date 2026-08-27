@@ -4,7 +4,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 const EnglishPage = lazy(() => import('./pages/EnglishPage.jsx'));
 const TamilPage = lazy(() => import('./pages/TamilPage.jsx'));
 const FeedbackPage = lazy(() => import('./pages/FeedbackPage.jsx'));
-const UsersFeedbackPage = lazy(() => import('./pages/UsersFeedbackPage.jsx'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin.jsx'));
 
 function LoadingScreen() {
@@ -27,9 +26,13 @@ export default function App() {
         <Route path="/ta" element={<TamilPage />} />
         <Route path="/Ta" element={<Navigate to="/ta" replace />} />
         <Route path="/Ta/index.html" element={<Navigate to="/ta" replace />} />
-        <Route path="/feedback" element={<FeedbackPage />} />
-        <Route path="/users-feedback" element={<UsersFeedbackPage />} />
-        <Route path="/user-feedback" element={<Navigate to="/users-feedback" replace />} />
+        <Route path="/:language/feedback" element={<FeedbackPage />} />
+        <Route path="/:language/Feedback" element={<FeedbackPage />} />
+        <Route path="/feedback" element={<Navigate to="/en/feedback" replace />} />
+        <Route path="/Feedback" element={<Navigate to="/en/feedback" replace />} />
+        <Route path="/users-feedback" element={<Navigate to="/en/feedback" replace />} />
+        <Route path="/user-feedback" element={<Navigate to="/en/feedback" replace />} />
+        <Route path="/:language/users-feedback" element={<Navigate to="/en/feedback" replace />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="*" element={<Navigate to="/en" replace />} />
       </Routes>

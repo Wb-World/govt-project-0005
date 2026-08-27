@@ -4,6 +4,7 @@
  *  • Star rating selection
  *  • Feedback type tag selection
  *  • Form submission → saves to Supabase (with localStorage fallback)
+ *  • Submitted feedback list rendering
  *  • Feedback carousel
  */
 
@@ -35,6 +36,167 @@ async function insertFeedbackToSupabase(feedback) {
     throw new Error(`Supabase error ${response.status}: ${text}`);
   }
 }
+
+async function fetchFeedbacksFromSupabase() {
+  let dbData = [];
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/feedback?select=*&order=created_at.desc`, {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      },
+    });
+    if (response.ok) {
+      dbData = await response.json();
+    }
+  } catch (err) {
+    console.warn('Supabase fetch error:', err);
+  }
+
+  try {
+    const storageKey = 'kovalam-admin-feedback';
+    const localSaved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+    if (Array.isArray(localSaved) && localSaved.length > 0) {
+      const dbIds = new Set(dbData.map((d) => d.id));
+      const localOnly = localSaved.filter((item) => !dbIds.has(item.id));
+      return [...dbData, ...localOnly];
+    }
+  } catch (localErr) {
+    console.error('Error reading localStorage:', localErr);
+  }
+
+  return dbData;
+}
+
+function getInitialsText(name) {
+  if (!name || name.toLowerCase() === 'anonymous') return '👤';
+  const parts = name.trim().split(' ');
+  if (parts.length >= 2) return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+  return name.slice(0, 2).toUpperCase();
+}
+
+function formatDisplayDate(isoString, isTamil) {
+  if (!isoString) return '';
+  try {
+    const date = new Date(isoString);
+    return date.toLocaleDateString(isTamil ? 'ta-IN' : 'en-IN', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  } catch {
+    return isoString;
+  }
+}
+
+function getTagBadgeColor(type) {
+  switch ((type || '').toLowerCase()) {
+    case 'good':
+    case 'நல்லது':
+      return 'bg-teal-100 text-teal-800 border-teal-200';
+    case 'poor':
+    case 'மோசம்':
+      return 'bg-rose-100 text-rose-800 border-rose-200';
+    case 'satisfaction':
+    case 'satisfactory':
+    case 'திருப்தி':
+      return 'bg-orange-100 text-orange-800 border-orange-200';
+    case 'excellent':
+    case 'மிகச்சிறந்தது':
+    case 'appreciation':
+      return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+    default:
+      return 'bg-amber-100 text-amber-800 border-amber-200';
+  }
+}
+
+async function renderSubmittedFeedbacksList() {
+  const container = document.getElementById('feedback-items-container');
+  const countBadge = document.getElementById('feedback-count-badge');
+  if (!container) return;
+
+  const isTamil = window.location.pathname.toLowerCase().startsWith('/ta');
+
+  try {
+    const feedbacks = await fetchFeedbacksFromSupabase();
+    if (countBadge) {
+      countBadge.textContent = `${feedbacks.length} ${isTamil ? 'கருத்துக்கள்' : 'Feedbacks'}`;
+    }
+
+    if (feedbacks.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-10 bg-gray-50 rounded-xl border border-dashed border-gray-300">
+          <div class="text-2xl mb-1">💬</div>
+          <p class="text-sm font-semibold text-gray-600">${isTamil ? 'இதுவரை கருத்துக்கள் எதுவும் இல்லை.' : 'No feedback submitted yet.'}</p>
+          <p class="text-xs text-gray-400 mt-1">${isTamil ? 'முதல் கருத்தைப் பகிர்ந்து தொடங்குங்கள்!' : 'Be the first to share your thoughts!'}</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = feedbacks
+      .map((item, idx) => {
+        const ratingNum = Number(item.rating) || 5;
+        const isAnon = item.anonymous || !item.name || item.name.toLowerCase() === 'anonymous';
+        const displayName = isAnon ? (isTamil ? 'அநாமதேய குடிமகன்' : 'Anonymous Citizen') : item.name;
+        const starsHtml = Array.from({ length: 5 })
+          .map((_, i) => `<span class="${i < ratingNum ? 'text-amber-500' : 'text-gray-300'}">${i < ratingNum ? '★' : '☆'}</span>`)
+          .join('');
+        const tagHtml = item.feedback_type
+          ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full border ${getTagBadgeColor(item.feedback_type)}">${item.feedback_type}</span>`
+          : '';
+
+        return `
+          <div class="bg-white rounded-xl p-5 border border-gray-200/90 shadow-sm transition-all flex flex-col justify-between group">
+            <div>
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-sm">
+                    ${getInitialsText(displayName)}
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-gray-900 flex items-center gap-1.5">
+                      ${displayName}
+                      ${isAnon ? `<span class="text-[10px] bg-gray-100 text-gray-500 px-1.5 py-0.5 rounded font-normal">${isTamil ? 'குடிமகன்' : 'Citizen'}</span>` : ''}
+                    </h4>
+                    <p class="text-xs text-gray-400">
+                      ${formatDisplayDate(item.created_at, isTamil)}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex flex-col items-end gap-1">
+                  <div class="flex text-amber-500 text-sm">
+                    ${starsHtml}
+                  </div>
+                  ${tagHtml}
+                </div>
+              </div>
+
+              <p class="text-sm text-gray-700 leading-relaxed whitespace-pre-line mt-2 pl-1">
+                "${(item.message || '').replace(/"/g, '&quot;')}"
+              </p>
+            </div>
+
+            <div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400">
+              <span class="flex items-center gap-1 text-emerald-600 font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                ${isTamil ? 'சரிபார்க்கப்பட்ட கருத்து' : 'Verified Submission'}
+              </span>
+              <span class="text-gray-300">#KovalamPanchayat</span>
+            </div>
+          </div>
+        `;
+      })
+      .join('');
+  } catch (e) {
+    console.error('Error rendering feedback list:', e);
+  }
+}
+
+window.renderSubmittedFeedbacksList = renderSubmittedFeedbacksList;
 
 // ── Global Event Delegation for Interactive Feedback Form ───────────────
 document.addEventListener('click', async (e) => {
@@ -76,11 +238,13 @@ document.addEventListener('click', async (e) => {
     const container = submitButton.closest('.feedback-form-container') || document;
     const nameInput     = container.querySelector('.feedback-form-input');
     const messageInput  = container.querySelector('.feedback-form-textarea');
-    const rating        = Number(container.querySelector('.feedback-rating-stars')?.getAttribute('data-rating') || 0);
+    const anonCheckbox  = container.querySelector('.feedback-checkbox-input');
+    const rating        = Number(container.querySelector('.feedback-rating-stars')?.getAttribute('data-rating') || 5);
     const feedbackType  = container.querySelector('.feedback-tags-container')?.getAttribute('data-feedback-type')
       || container.querySelector('.feedback-type-tag-active')?.textContent.trim()
-      || 'Appreciation';
+      || 'Good';
     const message = messageInput?.value.trim() || '';
+    const isAnon = anonCheckbox?.checked || false;
 
     if (!message) {
       messageInput?.focus();
@@ -90,11 +254,12 @@ document.addEventListener('click', async (e) => {
     const language = window.location.pathname.toLowerCase().startsWith('/ta') ? 'ta' : 'en';
 
     const feedback = {
-      name:          nameInput?.value.trim() || '',
-      rating:        rating || null,
+      name:          isAnon ? 'Anonymous' : (nameInput?.value.trim() || ''),
+      rating:        rating || 5,
       feedback_type: feedbackType,
       message,
       language,
+      anonymous:     isAnon,
       created_at:    new Date().toISOString(),
     };
 
@@ -121,6 +286,7 @@ document.addEventListener('click', async (e) => {
     // Reset form
     if (nameInput)     nameInput.value = '';
     if (messageInput)  messageInput.value = '';
+    if (anonCheckbox)  anonCheckbox.checked = false;
     const ratingStars = container.querySelectorAll('.feedback-rating-star');
     ratingStars.forEach((s) => {
       s.classList.remove('active');
@@ -134,6 +300,9 @@ document.addEventListener('click', async (e) => {
       submitButton.innerHTML = originalHTML;
       submitButton.disabled  = false;
     }, 2500);
+
+    // Refresh feedback list
+    renderSubmittedFeedbacksList();
   }
 });
 
@@ -190,6 +359,10 @@ window.initializeFeedbackCarousel = initializeFeedbackCarousel;
 
 if (document.readyState !== 'loading') {
   initializeFeedbackCarousel();
+  renderSubmittedFeedbacksList();
 } else {
-  document.addEventListener('DOMContentLoaded', initializeFeedbackCarousel);
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeFeedbackCarousel();
+    renderSubmittedFeedbacksList();
+  });
 }

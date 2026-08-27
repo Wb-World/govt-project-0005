@@ -7275,14 +7275,18 @@ export default function TamilPage() {
               </button>
             </div>
 
-            {/* Users Feedback Button - centered below form */}
-            <div className="mt-6 flex justify-center">
-              <a href="/users-feedback" className="users-feedback-btn text-lg sm:text-xl bg-gradient-to-r from-amber-400 to-amber-500 text-white py-3 px-8 rounded-full shadow-lg hover:shadow-amber-400/40 transition-all duration-300 transform hover:scale-110 inline-flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-                </svg>
-                Users Feedback
-              </a>
+            {/* Submitted Feedbacks Section */}
+            <div className="feedback-list-wrapper mt-10 pt-8 border-t border-amber-200">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">பொதுமக்கள் கருத்துக்கள்</h3>
+                  <p className="text-xs sm:text-sm text-gray-500 mt-0.5">மக்களால் பகிரப்பட்ட உண்மையான கருத்துக்கள்</p>
+                </div>
+                <span id="feedback-count-badge" className="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full border border-amber-200">0 கருத்துக்கள்</span>
+              </div>
+              <div id="feedback-items-container" className="max-h-[560px] overflow-y-auto space-y-4 pr-2">
+                {/* Dynamically populated by feedback.js */}
+              </div>
             </div>
           </div>
         </div>
