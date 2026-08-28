@@ -98,8 +98,7 @@ z-index: 9999; /* Higher than other elements */
 }
 
 #main-content {
-opacity: 0.9; /* Reduce opacity of main content */
-/* pointer-events: none; Disable interactions with main content */
+    opacity: 1;
 }
 .ticker-content {
     display: flex;

@@ -81,12 +81,13 @@ function addVijayImage(root) {
   titleWrap.insertAdjacentElement('afterend', image);
 }
 
-function fixTamilDesktopNav(root, language) {
-  if (language !== 'ta') return;
-  const navRow = root.querySelector('section.hidden.lg\\:block > div.flex');
-  if (!navRow) return;
-  navRow.style.flexWrap = 'wrap';
-  navRow.style.rowGap = '0.5rem';
+function fixDesktopNav(root) {
+  const navRows = root.querySelectorAll('section.hidden.lg\\:block > div.flex, section.hidden.lg\\:block div.flex');
+  navRows.forEach((navRow) => {
+    navRow.style.flexWrap = 'wrap';
+    navRow.style.rowGap = '0.35rem';
+    navRow.style.justifyContent = 'center';
+  });
 }
 
 function rewriteFeedbackLinks(root, language, navigate) {
@@ -167,6 +168,7 @@ function attachFeedbackStorage(root, language) {
         message,
       });
       button.dataset.feedbackSaved = 'true';
+      window.renderSubmittedFeedbacksList?.();
     } catch (error) {
       console.error('Unable to save feedback', error);
       button.dataset.feedbackSaved = 'false';
@@ -231,7 +233,7 @@ export default function LegacyPage() {
     root.innerHTML = normalizePath(doc.body.innerHTML);
     rewriteAssetPaths(root);
     addVijayImage(root);
-    fixTamilDesktopNav(root, language);
+    fixDesktopNav(root);
     rewriteFeedbackLinks(root, language, navigate);
     cleanupFeedback = attachFeedbackStorage(root, language);
 

@@ -187,3 +187,22 @@
 .feedback-progress-indicator {
   background: #f59e0b;
 }
+
+@media (max-width: 640px) {
+  .feedback-carousel-prev {
+    left: 4px;
+    width: 36px;
+    height: 36px;
+  }
+  .feedback-carousel-next {
+    right: 4px;
+    width: 36px;
+    height: 36px;
+  }
+  .feedback-card {
+    min-width: 260px;
+    max-width: 290px;
+    padding: 14px;
+  }
+}
+

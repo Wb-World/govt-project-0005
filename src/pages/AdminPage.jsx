@@ -179,15 +179,21 @@ const CSS = `
     font-size:13px; margin-bottom:20px;
   }
 
-  /* responsive */
   @media(max-width:768px) {
-    .adm-sidebar { display:none; }
-    .adm-body { padding:16px; }
+    .adm-sidebar {
+      position: fixed; top: 0; left: -240px; z-index: 1000;
+      transition: left 0.3s ease; height: 100vh;
+      box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+    }
+    .adm-sidebar.open { left: 0; }
+    .adm-body { padding:16px 12px; }
     .adm-topbar { padding:14px 16px; }
-    .adm-table th:nth-child(2),
-    .adm-table td:nth-child(2),
-    .adm-table th:nth-child(6),
-    .adm-table td:nth-child(6) { display:none; }
+    .adm-toolbar { flex-direction: column; align-items: stretch; }
+    .adm-search { max-width: 100%; min-width: auto; }
+    .adm-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .adm-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .adm-stat { padding: 14px; }
+    .adm-stat-value { font-size: 22px; }
   }
 `;
 
@@ -251,6 +257,8 @@ export default function AdminPage() {
   const [deleteTarget, setDeleteTarget] = useState(null); // id to confirm delete
   const [deleting, setDeleting] = useState(false);
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const refresh = useCallback(async () => {
     try {
       setLoading(true);
@@ -310,9 +318,18 @@ export default function AdminPage() {
         </div>
       )}
 
+      {/* Mobile sidebar overlay */}
+      {sidebarOpen && (
+        <div
+          className="adm-overlay"
+          style={{ zIndex: 999 }}
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       <div className="adm-root">
         {/* ── Sidebar ── */}
-        <aside className="adm-sidebar">
+        <aside className={`adm-sidebar ${sidebarOpen ? 'open' : ''}`}>
           <div className="adm-logo">
             <div className="adm-logo-icon">🏛</div>
             <div>
@@ -322,7 +339,11 @@ export default function AdminPage() {
           </div>
           <nav className="adm-nav">
             <div className="adm-nav-item active">💬 Feedback</div>
-            <div className="adm-nav-item" style={{ marginTop: 8 }}>🔗 <a href="/en" style={{ color: 'inherit', textDecoration: 'none' }}>View Site</a></div>
+            <div className="adm-nav-item" style={{ marginTop: 8 }}>
+              <a href="/en" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, width: '100%' }}>
+                <span>🌐</span> View Site
+              </a>
+            </div>
           </nav>
         </aside>
 
@@ -330,7 +351,17 @@ export default function AdminPage() {
         <div className="adm-main">
           {/* Topbar */}
           <div className="adm-topbar">
-            <h1>Feedback Management</h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <button
+                className="adm-btn adm-btn-ghost"
+                style={{ padding: '6px 10px', fontSize: 16 }}
+                onClick={() => setSidebarOpen((v) => !v)}
+                aria-label="Toggle Navigation Menu"
+              >
+                ☰
+              </button>
+              <h1>Feedback Management</h1>
+            </div>
             <div className="adm-topbar-right">
               <button className="adm-btn adm-btn-ghost" onClick={refresh} disabled={loading}>
                 {loading ? '⏳ Loading…' : '↻ Refresh'}

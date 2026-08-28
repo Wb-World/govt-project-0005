@@ -3,15 +3,15 @@
  * Handles the interactive feedback form:
  *  • Star rating selection
  *  • Feedback type tag selection
- *  • Form submission → saves to Supabase (with localStorage fallback)
- *  • Submitted feedback list rendering
+ *  • Form submission → saves directly to Supabase DB (NO localStorage/sessionStorage)
+ *  • Fetches directly from Supabase DB to display under feedback form
  *  • Feedback carousel
  */
 
 // ── Supabase config (anon key — safe for the browser) ──────────────────
-const SUPABASE_URL = 'https://pcxakufvfewarwrncjerj.supabase.co';
+const SUPABASE_URL = 'https://pcxakufvfewarwrcjerj.supabase.co';
 const SUPABASE_ANON_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjeGFrdWZ2ZmV3YXJ3cm5jamVyaiIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzg1MjM5MjExLCJleHAiOjIxMDA4MTUyMTF9.KdlfimmAcBWAwZrjv6rctNLAXNJvywJMD45ptUUFGA4';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjeGFrdWZ2ZmV3YXJ3cmNqZXJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUyMzkyMTEsImV4cCI6MjEwMDgxNTIxMX0.KdlfimmAcBWAwZrjv6rctNLAXNJvywJMD45ptUUFGA4';
 
 async function insertFeedbackToSupabase(feedback) {
   const response = await fetch(`${SUPABASE_URL}/rest/v1/feedback`, {
@@ -23,51 +23,46 @@ async function insertFeedbackToSupabase(feedback) {
       'Prefer': 'return=representation',
     },
     body: JSON.stringify({
-      name:          feedback.name || null,
-      rating:        feedback.rating || null,
-      feedback_type: feedback.feedback_type || null,
+      name:          feedback.name || 'Anonymous',
+      rating:        feedback.rating || 5,
+      feedback_type: feedback.feedback_type || feedback.type || 'Good',
+      department:    feedback.department || null,
       message:       feedback.message,
-      language:      feedback.language,
-      anonymous:     feedback.anonymous,
+      language:      feedback.language || 'en',
+      anonymous:     Boolean(feedback.anonymous),
     }),
   });
   if (!response.ok) {
     const text = await response.text();
     throw new Error(`Supabase error ${response.status}: ${text}`);
   }
+  return await response.json();
 }
 
 async function fetchFeedbacksFromSupabase() {
-  let dbData = [];
   try {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/feedback?select=*&order=created_at.desc`, {
+    let response = await fetch(`${SUPABASE_URL}/rest/v1/feedback?select=*&order=created_at.desc`, {
       headers: {
         'apikey': SUPABASE_ANON_KEY,
         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
       },
     });
+    if (!response.ok) {
+      response = await fetch(`${SUPABASE_URL}/rest/v1/feedback?select=*&order=id.desc`, {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+      });
+    }
     if (response.ok) {
-      dbData = await response.json();
+      const data = await response.json();
+      return Array.isArray(data) ? data : [];
     }
   } catch (err) {
-    console.warn('Supabase fetch error:', err);
+    console.error('Supabase fetch error:', err);
   }
-
-  try {
-    const storageKey = 'kovalam-admin-feedback';
-    const localSaved = JSON.parse(localStorage.getItem(storageKey) || '[]');
-    if (Array.isArray(localSaved) && localSaved.length > 0) {
-      const dbIds = new Set(dbData.map((d) => String(d.id)));
-      const localOnly = localSaved.filter((item) => !dbIds.has(String(item.id)));
-      const combined = [...dbData, ...localOnly];
-      combined.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
-      return combined;
-    }
-  } catch (localErr) {
-    console.error('Error reading localStorage:', localErr);
-  }
-
-  return dbData;
+  return [];
 }
 
 function getInitialsText(name) {
@@ -137,7 +132,7 @@ async function renderSubmittedFeedbacksList() {
     }
 
     container.innerHTML = feedbacks
-      .map((item, idx) => {
+      .map((item) => {
         const ratingNum = Number(item.rating) || 5;
         const isAnon = item.anonymous || !item.name || item.name.toLowerCase() === 'anonymous';
         const displayName = isAnon ? (isTamil ? 'அநாமதேய குடிமகன்' : 'Anonymous Citizen') : item.name;
@@ -257,15 +252,13 @@ document.addEventListener('click', async (e) => {
     const language = window.location.pathname.toLowerCase().startsWith('/ta') ? 'ta' : 'en';
 
     const feedback = {
-      id:            window.crypto?.randomUUID?.() || `feedback-${Date.now()}`,
-      name:          isAnon ? 'Anonymous' : (nameInput?.value.trim() || ''),
+      name:          isAnon ? 'Anonymous' : (nameInput?.value.trim() || 'Anonymous'),
       rating:        rating || 5,
       feedback_type: feedbackType,
       type:          feedbackType,
       message,
       language,
       anonymous:     isAnon,
-      created_at:    new Date().toISOString(),
     };
 
     submitButton.disabled  = true;
@@ -275,19 +268,7 @@ document.addEventListener('click', async (e) => {
     try {
       await insertFeedbackToSupabase(feedback);
     } catch (err) {
-      console.warn('Supabase save failed, fallback to local storage:', err);
-    }
-
-    // Always persist to local storage for immediate visibility
-    try {
-      const storageKey = 'kovalam-admin-feedback';
-      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
-      localStorage.setItem(storageKey, JSON.stringify([
-        feedback,
-        ...saved.filter((item) => String(item.id) !== String(feedback.id)),
-      ]));
-    } catch (localErr) {
-      console.error('Local storage error:', localErr);
+      console.error('Supabase save error:', err);
     }
 
     // Reset form
@@ -308,8 +289,8 @@ document.addEventListener('click', async (e) => {
       submitButton.disabled  = false;
     }, 2500);
 
-    // Refresh feedback list
-    renderSubmittedFeedbacksList();
+    // Refresh feedback list directly from DB
+    await renderSubmittedFeedbacksList();
   }
 });
 
