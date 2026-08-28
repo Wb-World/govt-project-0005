@@ -27,14 +27,10 @@ export default function FeedbackPage() {
     : ['Excellent', 'Good', 'Satisfactory', 'Poor'];
 
   const departments = [
-    { value: 'Reception',      en: 'Reception',      ta: 'வரவேற்பு' },
-    { value: 'Aadhaar',        en: 'Aadhaar',        ta: 'ஆதார்' },
-    { value: 'E-Sevai',        en: 'E-Sevai',        ta: 'இ-சேவை' },
-    { value: 'Tax',            en: 'Tax Management', ta: 'வரி மேலாண்மை' },
-    { value: 'Water',          en: 'Water Supply',   ta: 'குடிநீர் விநியோகம்' },
-    { value: 'Sanitation',     en: 'Sanitation & Cleanliness', ta: 'துப்புரவு பணி' },
-    { value: 'Street Lights',  en: 'Street Lights',  ta: 'தெருவிளக்குகள்' },
-    { value: 'General',        en: 'General Administration', ta: 'பொது நிர்வாகம்' },
+    { value: 'Reception', en: 'Reception',      ta: 'வரவேற்பு' },
+    { value: 'Aadhaar',   en: 'Aadhaar',        ta: 'ஆதார்' },
+    { value: 'E-Sevai',   en: 'E-Sevai',        ta: 'இ-சேவை' },
+    { value: 'Tax',       en: 'Tax Management', ta: 'வரி மேலாண்மை' },
   ];
 
   // Fetch feedbacks directly from DB
@@ -386,7 +382,7 @@ export default function FeedbackPage() {
               {/* Submit Button */}
               <div className="pt-4 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p className="text-xs text-gray-400">
-                  {isTamil ? '🔒 நேரடி தரவுத்தள பாதுகாப்பு' : '🔒 Direct Database Sync • Real-time display'}
+                  {/* {isTamil ? '🔒 நேரடி தரவுத்தள பாதுகாப்பு' : '🔒 Direct Database Sync • Real-time display'} */}
                 </p>
                 <button
                   type="submit"
