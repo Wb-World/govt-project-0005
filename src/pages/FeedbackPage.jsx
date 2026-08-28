@@ -12,7 +12,7 @@ export default function FeedbackPage() {
 
   // Form state
   const [name, setName] = useState('');
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(0);
   const [feedbackType, setFeedbackType] = useState(null);
   const [department, setDepartment] = useState('');
   const [message, setMessage] = useState('');
@@ -60,11 +60,13 @@ export default function FeedbackPage() {
     if (!message.trim()) return;
 
     setSubmitting(true);
+    const selectedType = feedbackType || feedbackTypes[0];
     const feedbackPayload = {
       language: lang,
       name: isAnonymous ? 'Anonymous' : name.trim(),
       rating: Number(rating) || 5,
-      type: feedbackType,
+      feedback_type: selectedType,
+      type: selectedType,
       department: department || null,
       anonymous: isAnonymous,
       message: message.trim(),
@@ -73,18 +75,20 @@ export default function FeedbackPage() {
 
     try {
       const saved = await saveFeedback(feedbackPayload);
-      setFeedbacks((prev) => [saved || feedbackPayload, ...prev]);
+      const entryToAdd = saved || feedbackPayload;
+      setFeedbacks((prev) => [entryToAdd, ...prev.filter((f) => String(f.id) !== String(entryToAdd.id))]);
       setName('');
       setMessage('');
       setIsAnonymous(false);
-      setRating(5);
+      setRating(0);
       setDepartment('');
+      setFeedbackType(null);
       setSubmitSuccess(true);
       setTimeout(() => setSubmitSuccess(false), 3000);
     } catch (err) {
       console.error('Error submitting feedback:', err);
       // Fallback update
-      setFeedbacks((prev) => [feedbackPayload, ...prev]);
+      setFeedbacks((prev) => [feedbackPayload, ...prev.filter((f) => String(f.id) !== String(feedbackPayload.id))]);
       setSubmitSuccess(true);
       setTimeout(() => setSubmitSuccess(false), 3000);
     } finally {
@@ -223,16 +227,23 @@ export default function FeedbackPage() {
                       {isTamil ? 'கருத்து வகை' : 'Feedback Type'}
                     </label>
                     <div className="flex flex-wrap gap-2">
-                      {feedbackTypes.map((type) => (
-                        <button
-                          key={type}
-                          type="button"
-                          onClick={() => setFeedbackType(type)}
-                          className="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all cursor-pointer bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                        >
-                          {type}
-                        </button>
-                      ))}
+                      {feedbackTypes.map((type) => {
+                        const isSelected = feedbackType === type;
+                        return (
+                          <button
+                            key={type}
+                            type="button"
+                            onClick={() => setFeedbackType(isSelected ? null : type)}
+                            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
+                              isSelected
+                                ? 'bg-amber-500 text-white border-amber-600 shadow-sm ring-2 ring-amber-300'
+                                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                            }`}
+                          >
+                            {type}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -385,13 +396,13 @@ export default function FeedbackPage() {
                                 🏢 {item.department}
                               </span>
                             )}
-                            {item.feedback_type && (
+                            {(item.feedback_type || item.type) && (
                               <span
                                 className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${getTagColor(
-                                  item.feedback_type
+                                  item.feedback_type || item.type
                                 )}`}
                               >
-                                {item.feedback_type}
+                                {item.feedback_type || item.type}
                               </span>
                             )}
                           </div>

@@ -57,9 +57,11 @@ async function fetchFeedbacksFromSupabase() {
     const storageKey = 'kovalam-admin-feedback';
     const localSaved = JSON.parse(localStorage.getItem(storageKey) || '[]');
     if (Array.isArray(localSaved) && localSaved.length > 0) {
-      const dbIds = new Set(dbData.map((d) => d.id));
-      const localOnly = localSaved.filter((item) => !dbIds.has(item.id));
-      return [...dbData, ...localOnly];
+      const dbIds = new Set(dbData.map((d) => String(d.id)));
+      const localOnly = localSaved.filter((item) => !dbIds.has(String(item.id)));
+      const combined = [...dbData, ...localOnly];
+      combined.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+      return combined;
     }
   } catch (localErr) {
     console.error('Error reading localStorage:', localErr);
@@ -142,8 +144,9 @@ async function renderSubmittedFeedbacksList() {
         const starsHtml = Array.from({ length: 5 })
           .map((_, i) => `<span class="${i < ratingNum ? 'text-amber-500' : 'text-gray-300'}">${i < ratingNum ? '★' : '☆'}</span>`)
           .join('');
-        const tagHtml = item.feedback_type
-          ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full border ${getTagBadgeColor(item.feedback_type)}">${item.feedback_type}</span>`
+        const tagType = item.feedback_type || item.type;
+        const tagHtml = tagType
+          ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full border ${getTagBadgeColor(tagType)}">${tagType}</span>`
           : '';
 
         return `
@@ -223,8 +226,10 @@ document.addEventListener('click', async (e) => {
     const feedbackTypeTags = container.querySelectorAll('.feedback-type-tag');
     feedbackTypeTags.forEach((item) => {
       item.setAttribute('aria-pressed', 'false');
+      item.classList.remove('feedback-type-tag-active');
     });
     tag.setAttribute('aria-pressed', 'true');
+    tag.classList.add('feedback-type-tag-active');
     container.querySelector('.feedback-tags-container')?.setAttribute('data-feedback-type', tag.textContent.trim());
     return;
   }
@@ -252,9 +257,11 @@ document.addEventListener('click', async (e) => {
     const language = window.location.pathname.toLowerCase().startsWith('/ta') ? 'ta' : 'en';
 
     const feedback = {
+      id:            window.crypto?.randomUUID?.() || `feedback-${Date.now()}`,
       name:          isAnon ? 'Anonymous' : (nameInput?.value.trim() || ''),
       rating:        rating || 5,
       feedback_type: feedbackType,
+      type:          feedbackType,
       message,
       language,
       anonymous:     isAnon,
@@ -268,17 +275,19 @@ document.addEventListener('click', async (e) => {
     try {
       await insertFeedbackToSupabase(feedback);
     } catch (err) {
-      console.warn('Supabase save failed, saving to local storage fallback:', err);
-      try {
-        const storageKey = 'kovalam-admin-feedback';
-        const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
-        localStorage.setItem(storageKey, JSON.stringify([
-          { ...feedback, id: window.crypto?.randomUUID?.() || `feedback-${Date.now()}` },
-          ...saved,
-        ]));
-      } catch (localErr) {
-        console.error('Local storage fallback error:', localErr);
-      }
+      console.warn('Supabase save failed, fallback to local storage:', err);
+    }
+
+    // Always persist to local storage for immediate visibility
+    try {
+      const storageKey = 'kovalam-admin-feedback';
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      localStorage.setItem(storageKey, JSON.stringify([
+        feedback,
+        ...saved.filter((item) => String(item.id) !== String(feedback.id)),
+      ]));
+    } catch (localErr) {
+      console.error('Local storage error:', localErr);
     }
 
     // Reset form
