@@ -20,7 +20,7 @@ export default function FeedbackPage() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const feedbackTypes = isTamil
-    ? ['நல்லது', 'மோசம்', 'திருப்தி', 'மிகச்சிறந்தது']
+    ? ['நல்லது', 'மிகச்சிறந்தது','திருப்தி', 'மோசம்']
     : ['Excellent', 'Good', 'Satisfaction', 'Poor'];
 
   useEffect(() => {
