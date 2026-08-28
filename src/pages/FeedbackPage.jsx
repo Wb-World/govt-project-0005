@@ -14,6 +14,7 @@ export default function FeedbackPage() {
   const [name, setName] = useState('');
   const [rating, setRating] = useState(5);
   const [feedbackType, setFeedbackType] = useState(null);
+  const [department, setDepartment] = useState('');
   const [message, setMessage] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -22,6 +23,14 @@ export default function FeedbackPage() {
   const feedbackTypes = isTamil
     ? ['நல்லது', 'மிகச்சிறந்தது','திருப்தி', 'மோசம்']
     : ['Excellent', 'Good', 'Satisfaction', 'Poor'];
+
+  const departments = [
+    { value: 'Reception',      en: 'Reception',      ta: 'வரவேற்பு' },
+    { value: 'Aadhaar',        en: 'Aadhaar',        ta: 'ஆதார்' },
+    { value: 'E-Sevai',        en: 'E-Sevai',        ta: 'இ-சேவை' },
+    { value: 'Tax',            en: 'Tax',            ta: 'வரி' },
+    { value: 'Field Services', en: 'Field Services', ta: 'களப் பணிகள்' },
+  ];
 
   useEffect(() => {
     let isMounted = true;
@@ -56,6 +65,7 @@ export default function FeedbackPage() {
       name: isAnonymous ? 'Anonymous' : name.trim(),
       rating: Number(rating) || 5,
       type: feedbackType,
+      department: department || null,
       anonymous: isAnonymous,
       message: message.trim(),
       created_at: new Date().toISOString(),
@@ -68,6 +78,7 @@ export default function FeedbackPage() {
       setMessage('');
       setIsAnonymous(false);
       setRating(5);
+      setDepartment('');
       setSubmitSuccess(true);
       setTimeout(() => setSubmitSuccess(false), 3000);
     } catch (err) {
@@ -187,6 +198,24 @@ export default function FeedbackPage() {
                         </button>
                       ))}
                     </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-1.5">
+                      {isTamil ? 'துறை' : 'Department'}
+                    </label>
+                    <select
+                      value={department}
+                      onChange={(e) => setDepartment(e.target.value)}
+                      className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="">{isTamil ? 'துறையைத் தேர்வு செய்யவும்' : 'Select a department'}</option>
+                      {departments.map((d) => (
+                        <option key={d.value} value={d.value}>
+                          {isTamil ? `${d.ta} (${d.en})` : d.en}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   <div>
@@ -351,6 +380,11 @@ export default function FeedbackPage() {
                                 <span key={s}>{s <= ratingNum ? '★' : '☆'}</span>
                               ))}
                             </div>
+                            {item.department && (
+                              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full border bg-blue-100 text-blue-800 border-blue-200">
+                                🏢 {item.department}
+                              </span>
+                            )}
                             {item.feedback_type && (
                               <span
                                 className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${getTagColor(

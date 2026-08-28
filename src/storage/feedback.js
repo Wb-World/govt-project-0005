@@ -42,6 +42,7 @@ export async function saveFeedback(entry) {
       name: entry.name,
       rating: entry.rating ? Number(entry.rating) : null,
       feedback_type: entry.type || entry.feedback_type,
+      department: entry.department || null,
       anonymous: entry.anonymous,
       message: entry.message,
     })

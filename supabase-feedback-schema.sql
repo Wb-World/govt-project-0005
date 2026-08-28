@@ -7,9 +7,13 @@ create table if not exists public.feedback (
   name text not null default '',
   rating integer check (rating between 1 and 5),
   feedback_type text not null default '',
+  department text default '',
   anonymous boolean not null default false,
   message text not null default ''
 );
+
+-- Migration if table already exists:
+alter table public.feedback add column if not exists department text default '';
 
 alter table public.feedback enable row level security;
 
