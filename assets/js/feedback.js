@@ -82,8 +82,7 @@ function initializeFeedbackCarousel() {
   const feedbackTags = document.querySelectorAll('.feedback-type-tag');
   feedbackTags.forEach(tag => {
     tag.addEventListener('click', () => {
-      feedbackTags.forEach(t => t.classList.remove('feedback-type-tag-active'));
-      tag.classList.add('feedback-type-tag-active');
+      // no highlight
     });
   });
 

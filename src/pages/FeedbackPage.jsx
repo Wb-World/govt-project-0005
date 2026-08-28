@@ -13,7 +13,7 @@ export default function FeedbackPage() {
   // Form state
   const [name, setName] = useState('');
   const [rating, setRating] = useState(5);
-  const [feedbackType, setFeedbackType] = useState('Good');
+  const [feedbackType, setFeedbackType] = useState(null);
   const [message, setMessage] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -21,7 +21,7 @@ export default function FeedbackPage() {
 
   const feedbackTypes = isTamil
     ? ['நல்லது', 'மோசம்', 'திருப்தி', 'மிகச்சிறந்தது']
-    : ['Good', 'Poor', 'Satisfaction', 'Excellent'];
+    : ['Excellent', 'Good', 'Satisfaction', 'Poor'];
 
   useEffect(() => {
     let isMounted = true;
@@ -199,11 +199,7 @@ export default function FeedbackPage() {
                           key={type}
                           type="button"
                           onClick={() => setFeedbackType(type)}
-                          className={`px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
-                            feedbackType === type
-                              ? 'bg-amber-600 text-white border-amber-600 shadow-sm'
-                              : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                          }`}
+                          className="px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all cursor-pointer bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
                         >
                           {type}
                         </button>

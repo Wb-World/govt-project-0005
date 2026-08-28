@@ -103,11 +103,6 @@
   transition: all 0.2s ease;
 }
 
-.feedback-type-tag-active, .feedback-type-tag:hover {
-  background: #f59e0b;
-  color: white;
-  border-color: #f59e0b;
-}
 
 .feedback-media-btn {
   background: white;

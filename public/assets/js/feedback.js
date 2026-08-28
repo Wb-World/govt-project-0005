@@ -222,10 +222,8 @@ document.addEventListener('click', async (e) => {
     const container = tag.closest('.feedback-form-container') || document;
     const feedbackTypeTags = container.querySelectorAll('.feedback-type-tag');
     feedbackTypeTags.forEach((item) => {
-      item.classList.remove('feedback-type-tag-active');
       item.setAttribute('aria-pressed', 'false');
     });
-    tag.classList.add('feedback-type-tag-active');
     tag.setAttribute('aria-pressed', 'true');
     container.querySelector('.feedback-tags-container')?.setAttribute('data-feedback-type', tag.textContent.trim());
     return;
